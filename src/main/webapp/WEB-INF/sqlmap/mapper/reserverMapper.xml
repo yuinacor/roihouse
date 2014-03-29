@@ -1,0 +1,34 @@
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="net.guesthouse.roi.ReserverModel">
+	<resultMap type="net.guesthouse.roi.dto.model.ReserverModel" id="ReserverModel">
+		<id column="id" property="id"/>
+		<result column="rname" property="rName"/>
+		<result column="gender" property="gender"/>
+		<result column="nationality" property="nationality"/>
+		<result column="phone" property="phone"/>
+		<result column="email" property="email"/>
+	</resultMap>
+	<sql id="baseColumns">
+		id, rname, gender, nationality, phone, email
+	</sql>
+
+	<insert id="insertReserver" parameterType="net.guesthouse.roi.dto.model.ReserverModel">
+		/*insertReserver*/
+		insert into reserver values(#{id},#{rName},#{gender},#{nationality},#{phone},#{email})
+	</insert>
+	
+	<update id="updateReserver" parameterType="net.guesthouse.roi.dto.model.ReserverModel">
+		/*updateReserver*/
+		update 
+	</update>
+	
+	<select id="selectReserver" parameterType="net.guesthouse.roi.dto.model.ReserverModel" resultMap="ReserverModel">
+		/*selectReserver*/
+		select 
+		<include refid="baseColumns"/>
+		from reserver
+	</select>
+</mapper>

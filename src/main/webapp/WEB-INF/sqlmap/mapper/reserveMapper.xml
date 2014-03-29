@@ -1,0 +1,47 @@
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="net.guesthouse.roi.ReserveModel">
+	<resultMap type="net.guesthouse.roi.dto.model.ReserveModel" id="ReserveModel">
+		<id column="id" property="id"/>
+		<result column="rtype" property="rType"/>
+		<result column="reserv_date" property="reservDate"/>
+		<result column="room_no" property="roomNo"/>
+		<result column="chkin" property="chkin"/>
+		<result column="night" property="night"/>
+		<result column="rname" property="rName"/>
+		<result column="pay_per_day" property="payPerDay"/>
+		<result column="payment" property="payment"/>
+		<result column="deposit" property="deposit"/>
+		<result column="balance" property="balance"/>
+		<result column="via" property="via"/>
+	</resultMap>
+	<sql id="baseColumns">
+		id,rtype,room_no,chkin,night,rname,pay_per_day,payment,deposit,balance,via
+	</sql>
+	
+	<insert id="insertReserve" parameterType="net.guesthouse.roi.dto.model.ReserveModel">
+		/*insertReserve*/
+		insert into reserve values(
+		#{id},
+		#{rType},
+		#{roomNo},
+		#{chkin},
+		#{night},
+		#{rname},
+		#{payPerDay},
+		#{payment},
+		#{deposit},
+		#{balance},
+		#{via}
+		)
+	</insert>
+	
+	<select id="selectReserve" parameterType="net.guesthouse.roi.dto.model.ReserveModel" resultMap="ReserveModel">
+		select
+		<include refid="baseColumns"/>
+		from reserve
+	</select>
+
+</mapper>

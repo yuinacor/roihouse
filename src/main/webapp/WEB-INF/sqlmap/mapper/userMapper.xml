@@ -1,0 +1,25 @@
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="net.guesthouse.roi.UserModel">
+	<resultMap type="net.guesthouse.roi.dto.model.UserModel" id="UserModel">
+		<id column="id" property="id"/>
+		<result column="pwd" property="pwd"/>
+	</resultMap>
+
+	<insert id="insertUser" parameterType="net.guesthouse.roi.dto.model.UserModel">
+		/*insertUser*/
+		insert into user values(#{id},#{pwd})
+	</insert>
+	
+	<update id="updateUser" parameterType="net.guesthouse.roi.dto.model.UserModel">
+		/*updateUser*/
+		update user set pwd=#{pwd} where id=#{id}
+	</update>
+	
+	<select id="selectUser" parameterType="net.guesthouse.roi.dto.model.UserModel" resultMap="UserModel">
+		/*selectUser*/
+		select id, pwd from user where id = #{id} and pwd = #{pwd}
+	</select>
+</mapper>

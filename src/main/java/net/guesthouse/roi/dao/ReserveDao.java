@@ -14,11 +14,11 @@ public class ReserveDao {
 	@Autowired
 	private CommonDAO commonDao;
 
-	public void insertReserve(ReserveModel reservModel) {
-		commonDao.insert(namespace + "insertReserve", reservModel);
+	public int insertReserve(ReserveModel reserveModel) {
+		return commonDao.insert(namespace + "insertReserve", reserveModel);
 	}
 
-	public List<ReserveModel> selectReserve() {
-		return commonDao.selectList(namespace + "selectReserve");
+	public List<ReserveModel> selectReserve(ReserveModel reserveModel) {
+		return commonDao.selectList(namespace + "selectReserve", reserveModel);
 	}
 }

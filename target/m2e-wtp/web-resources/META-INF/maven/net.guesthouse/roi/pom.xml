@@ -146,6 +146,11 @@
 			<artifactId>spring-data-jdbc-core</artifactId>
 			<version>1.0.0.RELEASE</version>
 		</dependency>
+		<dependency>
+			<groupId>opensymphony</groupId>
+			<artifactId>sitemesh</artifactId>
+			<version>2.4.2</version>
+		</dependency>
 	</dependencies>
     <build>
         <plugins>

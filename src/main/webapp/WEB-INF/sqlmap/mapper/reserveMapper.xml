@@ -23,9 +23,11 @@
 	
 	<insert id="insertReserve" parameterType="net.guesthouse.roi.dto.model.ReserveModel">
 		/*insertReserve*/
-		insert into reserve values(
-		#{id},
-		#{rType},
+		insert into reserve ( 
+		rtype,room_no,chkin,night,rname,pay_per_day,payment,deposit,balance,via
+		) 
+		values(
+		#{rtype},
 		#{roomNo},
 		#{chkin},
 		#{night},
@@ -38,10 +40,19 @@
 		)
 	</insert>
 	
+	<update id="updateDeposit" parameterType="net.guesthouse.roi.dto.model.ReserveModel">
+		/*updateDeposit*/
+		update reserve
+		set deposit = #{deposit}
+		where id = #{id}
+	</update>
+	
 	<select id="selectReserve" parameterType="net.guesthouse.roi.dto.model.ReserveModel" resultMap="ReserveModel">
+		/*selectReserve*/
 		select
 		<include refid="baseColumns"/>
 		from reserve
+		where chkin >= #{chkin}
 	</select>
 
 </mapper>

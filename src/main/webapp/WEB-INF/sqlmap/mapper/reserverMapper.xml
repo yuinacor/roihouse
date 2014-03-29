@@ -3,13 +3,14 @@
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="net.guesthouse.roi.ReserverModel">
-	<resultMap type="net.guesthouse.roi.dto.model.ReserverModel" id="ReserverModel">
-		<id column="id" property="id"/>
-		<result column="rname" property="rName"/>
-		<result column="gender" property="gender"/>
-		<result column="nationality" property="nationality"/>
-		<result column="phone" property="phone"/>
-		<result column="email" property="email"/>
+	<resultMap type="net.guesthouse.roi.dto.model.ReserverModel"
+		id="ReserverModel">
+		<id column="id" property="id" />
+		<result column="rname" property="rName" />
+		<result column="gender" property="gender" />
+		<result column="nationality" property="nationality" />
+		<result column="phone" property="phone" />
+		<result column="email" property="email" />
 	</resultMap>
 	<sql id="baseColumns">
 		id, rname, gender, nationality, phone, email
@@ -17,18 +18,46 @@
 
 	<insert id="insertReserver" parameterType="net.guesthouse.roi.dto.model.ReserverModel">
 		/*insertReserver*/
-		insert into reserver values(#{id},#{rName},#{gender},#{nationality},#{phone},#{email})
+		insert into reserver
+		values(#{id},#{rName},#{gender},#{nationality},#{phone},#{email})
 	</insert>
-	
+
 	<update id="updateReserver" parameterType="net.guesthouse.roi.dto.model.ReserverModel">
 		/*updateReserver*/
-		update 
+		update reserver
+		<set>
+			<if test="phone != null">
+				phone = #{phone},
+			</if>
+			<if test="email != null">
+				email = #{email}
+			</if>
+		</set>
+		where id = #{id}
 	</update>
-	
-	<select id="selectReserver" parameterType="net.guesthouse.roi.dto.model.ReserverModel" resultMap="ReserverModel">
+
+	<select id="selectReserver" parameterType="net.guesthouse.roi.dto.model.ReserverModel"
+		resultMap="ReserverModel">
 		/*selectReserver*/
-		select 
-		<include refid="baseColumns"/>
+		select
+		<include refid="baseColumns" />
 		from reserver
+		<where>
+			<if test="rName != null">
+				rname = #{rName}
+			</if>
+			<if test="gender != null">
+				and gender = #{gender}
+			</if>
+			<if test="natinality != null">
+				and nationality = #{natinality}
+			</if>
+			<if test="phone != null">
+				and phone = #{phone}
+			</if>
+			<if test="email != null">
+				and email = #{email}
+			</if>
+		</where>
 	</select>
 </mapper>

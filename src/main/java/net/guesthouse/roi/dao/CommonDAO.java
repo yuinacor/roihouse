@@ -21,12 +21,12 @@ public class CommonDAO extends SqlSessionDaoSupport {
 		return defaultNamespace;
 	}
 
-	public Object insert(String statementName, Object obj) {
+	public int insert(String statementName, Object obj) {
 		return getSqlSession().insert(defaultNamespace.concat(statementName),
 				obj);
 	}
 
-	public Object insert(String namespace, String statementName, Object obj) {
+	public int insert(String namespace, String statementName, Object obj) {
 		return getSqlSession().insert(
 				namespace.concat(".").concat(statementName), obj);
 	}
@@ -106,5 +106,5 @@ public class CommonDAO extends SqlSessionDaoSupport {
 				keyProperty);
 	}
 
-	// 마이바티스에서 배치는 설정으로 해결됨
+	// 留덉씠諛뷀떚�ㅼ뿉��諛곗튂���ㅼ젙�쇰줈 �닿껐��
 }

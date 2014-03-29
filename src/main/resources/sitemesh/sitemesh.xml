@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <sitemesh>
 	<!-- decorators.xml 의 위치를 지정 -->
-	<property name="decorators-file" value="/WEB-INF/decorator/decorators.xml" />
+	<property name="decorators-file" value="decorators.xml" />
 
 	<!-- 아래는 붙여 넣기 하기 -->
-	<excludes file="${decorators-file}" />
+	<!-- <excludes file="${decorators-file}" /> -->
 
 	<page-parsers>
 		<parser content-type="text/html"

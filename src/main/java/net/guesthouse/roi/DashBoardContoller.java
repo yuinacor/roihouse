@@ -22,7 +22,7 @@ public class DashBoardContoller {
 	@Autowired
 	ReserverDao reserverDao;
 
-	@RequestMapping(value = "/dashboard.roi", method = RequestMethod.GET)
+	@RequestMapping(value = "/dashboard.do", method = RequestMethod.GET)
 	public String dashBoard(Model model) {
 
 		return "dashboard";

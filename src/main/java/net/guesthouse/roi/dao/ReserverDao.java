@@ -12,8 +12,8 @@ public class ReserverDao {
 	@Autowired
 	private CommonDAO commonDao;
 
-	public void insertReserver(ReserverModel reserverModel) {
-		commonDao.insert(namespace + "insertReserver", reserverModel);
+	public int insertReserver(ReserverModel reserverModel) {
+		return commonDao.insert(namespace + "insertReserver", reserverModel);
 	}
 
 	public void updateReserver(ReserverModel reserverModel) {

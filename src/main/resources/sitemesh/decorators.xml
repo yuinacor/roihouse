@@ -1,6 +1,5 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<decorators>
-	<decorator name="navi" page="WEB-INF/views/decorator/navi.jsp">
-	<pattern>/*</pattern>
+<decorators defaultdir="/WEB-INF/views/decorators">
+	<decorator page="navi.jsp" name="main">
+		<pattern>/*.roi</pattern>
 	</decorator>
 </decorators>

@@ -1,7 +1,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@page contentType="text/html;charset=UTF-8"%>
-<%-- <%@ taglib prefix="decorator" uri="http://www.opensymphony.com/sitemesh/decorator" %>
-<%@ taglib prefix="page" uri="http://www.opensymphony.com/sitemesh/page" %>   --%>
+<%@ taglib prefix="decorator" uri="http://www.opensymphony.com/sitemesh/decorator" %>
+<%@ taglib prefix="page" uri="http://www.opensymphony.com/sitemesh/page" %>
 
 <!DOCTYPE html>
 <html lang="ko">
@@ -19,7 +19,6 @@
 <link href="resources/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
 <!-- Custom styles for this template -->
-<link href="resources/bootstrap/css/signin.css" rel="stylesheet">
 
 <!-- Just for debugging purposes. Don't actually copy this line! -->
 <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
@@ -29,30 +28,33 @@
       <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
       <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
+	<script type="text/javascript" src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+	<script type="text/javascript" src="resources/bootstrap/js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="resources/handlebars/handlebars-v1.3.0.js"></script>
 </head>
 
 <body>
-<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+<nav class="navbar navbar-default" role="navigation">
 				<div class="navbar-header">
 					 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"> <span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button> <a class="navbar-brand" href="#">RoiHouse</a>
 				</div>
 				
 				<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 					<ul class="nav navbar-nav">
-						<li class="active">
-							<a href="#">예약장부</a>
+						<li>
+							<a href="dashboard.roi">예약장부</a>
 						</li>
 						<li>
 							<a href="#">예약현황</a>
 						</li>
 						<li>
-							<a href="inputform">예약등록</a>
+							<a href="inputform.roi">예약등록</a>
 						</li>
 					</ul>
 				
 					<ul class="nav navbar-nav navbar-right">
 						<li>
-							<a href="#">로그아웃</a>
+							<a href="logout">로그아웃</a>
 						</li>
 					</ul>
 				</div>
@@ -60,8 +62,6 @@
 			</nav>
 <decorator:body/>
 	
-	<script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
-	<script type="text/javascript" src="resources/bootstrap/js/bootstrap.min.js"></script>
-	<script type="text/javascript" src="resources/underscore/underscore-min.js"></script>
+
 </body>
 </html>

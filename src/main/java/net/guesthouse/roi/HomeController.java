@@ -41,7 +41,7 @@ public class HomeController {
 		if (logedUser != null) {
 			session.setAttribute("userId", logedUser.getId());
 			model.addAttribute("logedUser", logedUser);
-			return "dashboard";
+			return "redirect:dashboard.roi";
 		}
 		model.addAttribute("loginFail", "fail");
 		return "home";

@@ -86,55 +86,50 @@
 	<!-- Bootstrap core JavaScript
     ================================================== -->
 	<!-- Placed at the end of the document so the pages load faster -->
-	<script type="underscore-template" id="tpl">
+	<script type="handlebars-template" id="tpl">
 	<tr>
 		<td>
 			1
 		</td>
 		<td>
-			<@= reservDate %>
+			{{ reservDate}}
 		</td>
 		<td>
-			<@= roomNo %>
+			{{ roomNo}}
 		</td>
 		<td>
-			<@= chkin %>
+			{{ chkin}}
 		</td>
 		<td>
-			<@= night %>
+			{{ night}}
 		</td>
 		<td>
-			<@= rName %>
+			{{ rName}}
 		</td>
 		<td>
-			<@= payPerDay %>
+			{{ payPerDay}}
 		</td>
 		<td>
-			<@= payment %>
+			{{ payment}}
 		</td>
 		<td>
-			<@= deposit %>
+			{{ deposit}}
 		</td>
 		<td>
-			<@= balance %>
+			{{ balance}}
 		</td>
 		<td>
-			<@= via %>
+			{{ via}}
 		</td>
 	</tr>
 	</script>
 	<script type="text/javascript">
 		$(document).ready(function(){
-			_.templateSettings = {
-				    interpolate: /\<\@\=(.+?)\@\>/gim,
-				    evaluate: /\<\@([\s\S]+?)\@\>/gim,
-				    escape: /\<\@\-(.+?)\@\>/gim
-				};
-			var TPL = _.template($('#tpl').html());
-			
-			$.get('getReserve', function(data){
-				TPL(data);
-			});
+				var TPL = Handlebars.compile($('#tpl').html());
+				$.get('selectReserveList.roi',function(data){
+					var test = undefined;
+					$('#table-body').append(TPL(data));
+				});
 		});
 	</script>	
 </body>

@@ -56,4 +56,11 @@ public class ReserverModel {
 		this.email = email;
 	}
 
+	@Override
+	public String toString() {
+		return "ReserverModel [id=" + id + ", rName=" + rName + ", gender="
+				+ gender + ", nationality=" + nationality + ", phone=" + phone
+				+ ", email=" + email + "]";
+	}
+
 }

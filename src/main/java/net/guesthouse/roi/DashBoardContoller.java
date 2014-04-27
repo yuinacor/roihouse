@@ -7,6 +7,8 @@ import net.guesthouse.roi.dao.ReserverDao;
 import net.guesthouse.roi.dto.model.ReserveModel;
 import net.guesthouse.roi.dto.model.ReserverModel;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
@@ -14,7 +16,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
@@ -24,6 +25,9 @@ public class DashBoardContoller {
 	ReserveDao reserveDao;
 	@Autowired
 	ReserverDao reserverDao;
+
+	private static Logger LOGGER = LoggerFactory
+			.getLogger(DashBoardContoller.class);
 
 	@RequestMapping(value = "/dashboard.roi", method = RequestMethod.GET)
 	public String dashBoard(Model model) {
@@ -50,6 +54,13 @@ public class DashBoardContoller {
 		}
 	}
 
+	@RequestMapping(value = "/postInputForm", method = RequestMethod.POST)
+	public @ResponseBody
+	Object postInputForm(@RequestBody ReserverModel reserverModel,
+			@RequestBody ReserveModel reserveModel) {
+		return null;
+	}
+
 	@RequestMapping(value = "/insertReserve", method = RequestMethod.POST)
 	@Transactional
 	public @ResponseBody
@@ -66,6 +77,8 @@ public class DashBoardContoller {
 	@Transactional
 	public @ResponseBody
 	Object insertReserver(@RequestBody ReserverModel reserverModel) {
+		LOGGER.info("reserverModel : {}", reserverModel.toString());
+
 		System.out.println("test");
 		int result = reserverDao.insertReserver(reserverModel);
 

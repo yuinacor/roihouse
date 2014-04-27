@@ -57,10 +57,23 @@ public class DashBoardContoller {
 	}
 
 	@RequestMapping(value = "/postInputForm", method = RequestMethod.POST)
+	@Transactional
 	public @ResponseBody
 	Object postInputForm(@RequestBody RContainer value) {
-		LOGGER.debug("reserverModel : {}, reserveModel : {}", value.getReserverModel(), value.getReserveModel());
-		
+		LOGGER.debug("reserverModel : {}, reserveModel : {}",
+				value.getReserverModel(), value.getReserveModel());
+		int result = reserveDao.insertReserve(value.getReserveModel());
+
+		//TODO
+		//어디서 실패했는지 알 수 있도록 변경...
+		//유저의 경우는 같은 전화번호나 메일이 있으면 기존 유저 정보를 가져오는걸로?
+		if (result < 0) {
+			return false;
+		}
+		result = reserverDao.insertReserver(value.getReserverModel());
+		if (result < 0) {
+			return false;
+		}
 		return true;
 	}
 

@@ -27,11 +27,11 @@
 		rtype,room_no,chkin,nights,rname,pay_per_day,payment,deposit,balance,via
 		) 
 		values(
-		#{rtype},
+		#{rType},
 		#{roomNo},
 		#{chkin},
 		#{nights},
-		#{rname},
+		#{rName},
 		#{payPerDay},
 		#{payment},
 		#{deposit},

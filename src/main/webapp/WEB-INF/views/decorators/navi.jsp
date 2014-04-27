@@ -30,7 +30,7 @@
     <![endif]-->
 	<script type="text/javascript" src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
 	<script type="text/javascript" src="resources/bootstrap/js/bootstrap.min.js"></script>
-	<script type="text/javascript" src="resources/handlebars/handlebars-v1.3.0.js"></script>
+	<script type="text/javascript" src="resources/js/handlebars-v1.3.0.js"></script>
 </head>
 
 <body>

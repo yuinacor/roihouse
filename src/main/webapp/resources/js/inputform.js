@@ -91,8 +91,11 @@ $(document).ready(
 				data = {"reserverModel":{"rName":"ddd","gender":"M","nationality":"kor","phone":"010101","email":"fdf@df.com"},"reserveModel":{"reservDate":"2014-04-27","roomNo":"201","chkin":"2014-04-30","nights":"3","rName":"ddd","payPerDay":"30000","payment":"90000","deposit":"40000","balance":"50000","via":"no"}};
 				
 				console.log(data);
-				$.ajaxSetup({contentType : "application/json"});
-				$.post("postInputForm", data, function(response){
+				$.ajaxSetup({
+					contentType : "application/json"
+				});
+				
+				$.post("postInputForm", JSON.stringify(data), function(response){
 					console.log(response);
 				});
 			});

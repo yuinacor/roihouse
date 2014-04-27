@@ -61,7 +61,7 @@ public class DashBoardContoller {
 	Object postInputForm(@RequestBody RContainer value) {
 		LOGGER.debug("reserverModel : {}, reserveModel : {}", value.getReserverModel(), value.getReserveModel());
 		
-		return null;
+		return true;
 	}
 
 	@RequestMapping(value = "/insertReserve", method = RequestMethod.POST)

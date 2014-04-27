@@ -4,7 +4,8 @@
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
 	<bean id="jacksonMessageConverter"
-		class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter"></bean>
+		class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter">
+		</bean>
 	<bean
 		class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter">
 		<property name="messageConverters">

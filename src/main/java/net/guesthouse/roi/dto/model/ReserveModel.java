@@ -2,6 +2,9 @@ package net.guesthouse.roi.dto.model;
 
 import java.sql.Timestamp;
 
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.deser.std.DateDeserializers.DateDeserializer;
+
 public class ReserveModel {
 	private int id;
 	private String rType;
@@ -32,6 +35,7 @@ public class ReserveModel {
 		this.rType = rType;
 	}
 
+	@JsonDeserialize(using = DateDeserializer.class)
 	public Timestamp getReservDate() {
 		return reservDate;
 	}
@@ -48,6 +52,7 @@ public class ReserveModel {
 		this.roomNo = roomNo;
 	}
 
+	@JsonDeserialize(using = DateDeserializer.class)
 	public Timestamp getChkin() {
 		return chkin;
 	}

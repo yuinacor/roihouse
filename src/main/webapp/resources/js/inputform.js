@@ -80,20 +80,36 @@ $(document).ready(
 				var result = payment - deposit;
 				form.find('[name=balance]').val(result);
 			});
-
-			form.submit(function(e) {
+			
+			form.submit(function(e){
 				var arr = form.serializeArray();
-				$.ajaxSetup({
-					contentType : "application/json"
+				var data = {
+						reserverModel : makeReserver(arr),
+						reserveModel : makeReserve(arr)
+				};
+				
+				data = {"reserverModel":{"rName":"ddd","gender":"M","nationality":"kor","phone":"010101","email":"fdf@df.com"},"reserveModel":{"reservDate":"2014-04-27","roomNo":"201","chkin":"2014-04-30","nights":"3","rName":"ddd","payPerDay":"30000","payment":"90000","deposit":"40000","balance":"50000","via":"no"}};
+				
+				console.log(data);
+				$.ajaxSetup({contentType : "application/json"});
+				$.post("postInputForm", data, function(response){
+					console.log(response);
 				});
-				$.post('insertReserver', makeReserver(arr),
-						function(data) {
-							$.post('insertReserve', makeReserve(arr), function(
-									data) {
-								if (data) {
-									window.href = "dashboard.roi";
-								}
-							});
-						});
 			});
+
+//			form.submit(function(e) {
+//				var arr = form.serializeArray();
+//				$.ajaxSetup({
+//					contentType : "application/json"
+//				});
+//				$.post('insertReserver', makeReserver(arr),
+//						function(data) {
+//							$.post('insertReserve', makeReserve(arr), function(
+//									data) {
+//								if (data) {
+//									window.href = "dashboard.roi";
+//								}
+//							});
+//						});
+//			});
 		});

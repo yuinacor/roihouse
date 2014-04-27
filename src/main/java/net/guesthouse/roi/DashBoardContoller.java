@@ -1,9 +1,11 @@
 package net.guesthouse.roi;
 
 import java.util.List;
+import java.util.Map;
 
 import net.guesthouse.roi.dao.ReserveDao;
 import net.guesthouse.roi.dao.ReserverDao;
+import net.guesthouse.roi.dto.model.RContainer;
 import net.guesthouse.roi.dto.model.ReserveModel;
 import net.guesthouse.roi.dto.model.ReserverModel;
 
@@ -56,8 +58,9 @@ public class DashBoardContoller {
 
 	@RequestMapping(value = "/postInputForm", method = RequestMethod.POST)
 	public @ResponseBody
-	Object postInputForm(@RequestBody ReserverModel reserverModel,
-			@RequestBody ReserveModel reserveModel) {
+	Object postInputForm(@RequestBody RContainer value) {
+		LOGGER.debug("reserverModel : {}, reserveModel : {}", value.getReserverModel(), value.getReserveModel());
+		
 		return null;
 	}
 

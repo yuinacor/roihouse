@@ -88,7 +88,7 @@ $(document).ready(
 						reserveModel : makeReserve(arr)
 				};
 				
-				data = {"reserverModel":{"rName":"ddd","gender":"M","nationality":"kor","phone":"010101","email":"fdf@df.com"},"reserveModel":{"reservDate":"2014-04-27","roomNo":"201","chkin":"2014-04-30","nights":"3","rName":"ddd","payPerDay":"30000","payment":"90000","deposit":"40000","balance":"50000","via":"no"}};
+//				data = {"reserverModel":{"rName":"ddd","gender":"M","nationality":"kor","phone":"010101","email":"fdf@df.com"},"reserveModel":{"reservDate":"2014-04-27","roomNo":"201","chkin":"2014-04-30","nights":"3","rName":"ddd","payPerDay":"30000","payment":"90000","deposit":"40000","balance":"50000","via":"no"}};
 				
 				console.log(data);
 				$.ajaxSetup({
@@ -97,6 +97,13 @@ $(document).ready(
 				
 				$.post("postInputForm", JSON.stringify(data), function(response){
 					console.log(response);
+					if(response){
+						alert("input success!");
+						location.href = "dashboard.roi";
+					} else {
+						alert("input fail!!");
+						location.reload(true);
+					}
 				});
 			});
 

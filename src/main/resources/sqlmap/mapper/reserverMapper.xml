@@ -18,8 +18,8 @@
 
 	<insert id="insertReserver" parameterType="net.guesthouse.roi.dto.model.ReserverModel">
 		/*insertReserver*/
-		insert into reserver
-		values(#{id},#{rName},#{gender},#{nationality},#{phone},#{email})
+		insert into reserver (id, rname, gender, nationality, phone, email)
+		values(null, #{rName}, #{gender}, #{nationality}, #{phone}, #{email})
 	</insert>
 
 	<update id="updateReserver" parameterType="net.guesthouse.roi.dto.model.ReserverModel">

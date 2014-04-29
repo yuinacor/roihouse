@@ -1,5 +1,7 @@
 package net.guesthouse.roi;
 
+import java.sql.Timestamp;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -46,6 +48,7 @@ public class DashBoardContoller {
 	@RequestMapping(value = "/selectReserveList.roi", method = RequestMethod.GET)
 	public @ResponseBody
 	Object selectReserveList(ReserveModel reserveModel) {
+		reserveModel.setChkin(new Timestamp(System.currentTimeMillis()));
 		List<ReserveModel> reserveModels = reserveDao
 				.selectReserve(reserveModel);
 		if (reserveModels.size() != 0) {
@@ -65,8 +68,8 @@ public class DashBoardContoller {
 		int result = reserveDao.insertReserve(value.getReserveModel());
 
 		//TODO
-		//어디서 실패했는지 알 수 있도록 변경...
-		//유저의 경우는 같은 전화번호나 메일이 있으면 기존 유저 정보를 가져오는걸로?
+		//��대����� ��ㅽ�⑦�����吏� ��� ��� ������濡� 蹂�寃�...
+		//��������� 寃쎌�곕�� 媛���� ������踰���몃�� 硫���쇱�� �����쇰㈃ 湲곗〈 ������ ���蹂대�� 媛���몄�ㅻ��嫄몃��?
 		if (result < 0) {
 			return false;
 		}

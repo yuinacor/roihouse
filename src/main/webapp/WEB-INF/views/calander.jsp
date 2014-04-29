@@ -41,34 +41,25 @@
 							#
 						</th>
 						<th>
-							예약일
+							일
 						</th>
 						<th>
-							방번호
+							월
 						</th>
 						<th>
-							체크인
+							화
 						</th>
 						<th>
-							박 수
+							수
 						</th>
 						<th>
-							예약자 이름
+							목
 						</th>
 						<th>
-							1박 가격
+							금
 						</th>
 						<th>
-							총액
-						</th>
-						<th>
-							선입금
-						</th>
-						<th>
-							잔금
-						</th>
-						<th>
-							경유
+							토
 						</th>
 					</tr>
 				</thead>
@@ -85,54 +76,48 @@
     ================================================== -->
 	<!-- Placed at the end of the document so the pages load faster -->
 	<script type="handlebars-template" id="tpl">
-	
-	{{#each data}}
 	<tr>
 		<td>
 			1
 		</td>
 		<td>
-			{{timestamp this.reservDate}}
+			{{ reservDate}}
 		</td>
 		<td>
-			{{ this.roomNo}}
+			{{ roomNo}}
 		</td>
 		<td>
-			{{timestamp this.chkin}}
+			{{ chkin}}
 		</td>
 		<td>
-			{{ this.nights}}
+			{{ night}}
 		</td>
 		<td>
-			{{ this.rName}}
+			{{ rName}}
 		</td>
 		<td>
-			{{ this.payPerDay}}
+			{{ payPerDay}}
 		</td>
 		<td>
-			{{ this.payment}}
+			{{ payment}}
 		</td>
 		<td>
-			{{ this.deposit}}
+			{{ deposit}}
 		</td>
 		<td>
-			{{ this.balance}}
+			{{ balance}}
 		</td>
 		<td>
-			{{ this.via}}
+			{{ via}}
 		</td>
 	</tr>
-	{{/each}}
 	</script>
 	<script type="text/javascript">
-	Handlebars.registerHelper("timestamp", function(data){
-		return new Date(Number(data)).toLocaleDateString();
-	});
 		$(document).ready(function(){
 				var TPL = Handlebars.compile($('#tpl').html());
 				$.get('selectReserveList.roi',function(data){
-					console.log(data);
-					$('#table-body').append(TPL({data : data}));
+					var test = undefined;
+					$('#table-body').append(TPL(data));
 				});
 		});
 	</script>	

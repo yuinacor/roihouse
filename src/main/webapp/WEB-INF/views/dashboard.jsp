@@ -33,7 +33,14 @@
 		<div class="col-md-12 column">
 			<h1>
 				DashBoard
-			</h3>
+			</h1>
+			<div class="text-center">
+			<h1>
+			<span id="month-toPrev" class="glyphicon glyphicon-chevron-left" style="cursor:pointer"></span>
+			<span id="month-header"></span>
+			<span id="month-toNext" class="glyphicon glyphicon-chevron-right" style="cursor:pointer"></span>
+			</h1>
+			</div>
 			<table class="table">
 				<thead>
 					<tr>
@@ -41,13 +48,13 @@
 							#
 						</th>
 						<th>
-							예약일
+							체크인
 						</th>
 						<th>
 							방번호
 						</th>
 						<th>
-							체크인
+							예약일
 						</th>
 						<th>
 							박 수
@@ -62,7 +69,10 @@
 							총액
 						</th>
 						<th>
-							선입금
+							입금
+						</th>
+						<th>
+							현금
 						</th>
 						<th>
 							잔금
@@ -92,13 +102,13 @@
 			1
 		</td>
 		<td>
-			{{timestamp this.reservDate}}
+			{{timestamp this.chkin}}
 		</td>
 		<td>
 			{{ this.roomNo}}
 		</td>
 		<td>
-			{{timestamp this.chkin}}
+			{{timestamp this.reservDate}}
 		</td>
 		<td>
 			{{ this.nights}}
@@ -115,6 +125,7 @@
 		<td>
 			{{ this.deposit}}
 		</td>
+		<td></td>
 		<td>
 			{{ this.balance}}
 		</td>
@@ -124,17 +135,6 @@
 	</tr>
 	{{/each}}
 	</script>
-	<script type="text/javascript">
-	Handlebars.registerHelper("timestamp", function(data){
-		return new Date(Number(data)).toLocaleDateString();
-	});
-		$(document).ready(function(){
-				var TPL = Handlebars.compile($('#tpl').html());
-				$.get('selectReserveList.roi',function(data){
-					console.log(data);
-					$('#table-body').append(TPL({data : data}));
-				});
-		});
-	</script>	
+	<script type="text/javascript" src="resources/js/dashboard.js"></script>	
 </body>
 </html>

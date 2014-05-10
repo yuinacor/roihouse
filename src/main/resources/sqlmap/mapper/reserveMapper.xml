@@ -17,6 +17,11 @@
 		<result column="balance" property="balance"/>
 		<result column="via" property="via"/>
 	</resultMap>
+	<resultMap type="net.guesthouse.roi.dto.model.RoomModel" id="RoomModel">
+		<result column="room_no" property="roomNo"/>
+		<result column="chkin" property="chkin"/>
+	</resultMap>
+	
 	<sql id="baseColumns">
 		id,rtype,room_no,chkin,nights,rname,pay_per_day,payment,deposit,balance,via
 	</sql>
@@ -52,7 +57,26 @@
 		select
 		<include refid="baseColumns"/>
 		from reserve
-		where chkin >= #{chkin}
+		where chkin &gt;= #{chkin}
+	</select>
+	
+	<select id="selectReserveList" parameterType="net.guesthouse.roi.dto.model.DashboardTimeModel" resultMap="ReserveModel">
+		/*selectReserveList*/
+		select
+		<include refid="baseColumns"/>
+		from reserve
+		where chkin &gt;= #{start}
+		and chkin &lt; #{end}
+	</select>
+	
+	<select id="selectCalender" parameterType="net.guesthouse.roi.dto.model.DashboardTimeModel" resultMap="RoomModel">
+		/*selectCalender*/
+		select
+		chkin, room_no
+		from reserve
+		where chkin &gt;= #{start}
+		and chkin &lt; #{end};
+		
 	</select>
 
 </mapper>

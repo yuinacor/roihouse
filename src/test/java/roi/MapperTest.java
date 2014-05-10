@@ -2,6 +2,7 @@ package roi;
 
 import java.io.IOException;
 
+import net.guesthouse.roi.dto.model.DashboardTimeModel;
 import net.guesthouse.roi.dto.model.RContainer;
 import net.guesthouse.roi.dto.model.ReserveModel;
 import net.guesthouse.roi.dto.model.ReserverModel;
@@ -33,6 +34,18 @@ public class MapperTest {
 		
 		
 		System.out.println("test!!!");
+		
+	}
+	
+	@Test
+	public void calenderTest() throws JsonParseException, JsonMappingException, IOException{
+		
+		String data = "{\"start\":\"2014-05-01\",\"end\":\"2014-06-01\"}";
+		System.out.println(data);
+		
+		ObjectMapper mapper = new ObjectMapper();
+		
+		DashboardTimeModel model = mapper.readValue(data, DashboardTimeModel.class);
 		
 	}
 }

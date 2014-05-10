@@ -33,33 +33,66 @@
 		<div class="col-md-12 column">
 			<h1>
 				DashBoard
-			</h3>
-			<table class="table">
+			</h1>
+			<table class="table table-bordered">
 				<thead>
 					<tr>
 						<th>
 							#
 						</th>
 						<th>
-							일
+							201
 						</th>
 						<th>
-							월
+							202
 						</th>
 						<th>
-							화
+							203
 						</th>
 						<th>
-							수
+							301
 						</th>
 						<th>
-							목
+							302
 						</th>
 						<th>
-							금
+							303
 						</th>
 						<th>
-							토
+							401
+						</th>
+						<th>
+							402
+						</th>
+						<th>
+							dm1
+						</th>
+						<th>
+							dm2
+						</th>
+						<th>
+							dm3
+						</th>
+						<th>
+							dm4
+						</th>
+						<th>
+							dm5
+						</th>
+						<th>
+							df1
+						</th>
+						<th>
+							df2
+						</th>
+						<th>
+							df3
+						</th>
+						<th>
+							df4
+						</th>
+						<th>
+							df5
 						</th>
 					</tr>
 				</thead>
@@ -76,50 +109,16 @@
     ================================================== -->
 	<!-- Placed at the end of the document so the pages load faster -->
 	<script type="handlebars-template" id="tpl">
-	<tr>
-		<td>
-			1
-		</td>
-		<td>
-			{{ reservDate}}
-		</td>
-		<td>
-			{{ roomNo}}
-		</td>
-		<td>
-			{{ chkin}}
-		</td>
-		<td>
-			{{ night}}
-		</td>
-		<td>
-			{{ rName}}
-		</td>
-		<td>
-			{{ payPerDay}}
-		</td>
-		<td>
-			{{ payment}}
-		</td>
-		<td>
-			{{ deposit}}
-		</td>
-		<td>
-			{{ balance}}
-		</td>
-		<td>
-			{{ via}}
-		</td>
-	</tr>
+	{{#each data}}
+		<tr>
+			<td class="date {{weekendHelper this.calenderDate}}">{{dateHelper this.calenderDate}}</td>
+			{{#each this.rooms}}
+				<td class="room {{roomHelper this}}">{{#if this.chked}}!{{/if}}</td>
+			{{/each}}
+		</tr>
+	{{/each}}
 	</script>
-	<script type="text/javascript">
-		$(document).ready(function(){
-				var TPL = Handlebars.compile($('#tpl').html());
-				$.get('selectReserveList.roi',function(data){
-					var test = undefined;
-					$('#table-body').append(TPL(data));
-				});
-		});
+	<script type="text/javascript" src="resources/js/calender.js">
 	</script>	
 </body>
 </html>

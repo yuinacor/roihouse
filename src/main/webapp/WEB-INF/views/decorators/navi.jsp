@@ -45,7 +45,7 @@
 							<a href="dashboard.roi">예약장부</a>
 						</li>
 						<li>
-							<a href="#">예약현황</a>
+							<a href="calender.roi">예약현황</a>
 						</li>
 						<li>
 							<a href="inputform.roi">예약등록</a>

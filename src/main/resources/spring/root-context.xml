@@ -8,7 +8,9 @@
 		<property name="objectMapper">
 			<bean class="net.guesthouse.roi.util.CustomObjectMapper"></bean>
 		</property>
-		</bean>
+		<property name="supportedMediaTypes" value="application/json" />
+	</bean>
+
 	<bean
 		class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter">
 		<property name="messageConverters">

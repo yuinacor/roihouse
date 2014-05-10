@@ -1,12 +1,10 @@
 package net.guesthouse.roi;
 
-import java.sql.Timestamp;
-import java.util.Date;
 import java.util.List;
-import java.util.Map;
 
 import net.guesthouse.roi.dao.ReserveDao;
 import net.guesthouse.roi.dao.ReserverDao;
+import net.guesthouse.roi.dto.model.DashboardTimeModel;
 import net.guesthouse.roi.dto.model.RContainer;
 import net.guesthouse.roi.dto.model.ReserveModel;
 import net.guesthouse.roi.dto.model.ReserverModel;
@@ -45,12 +43,12 @@ public class DashBoardContoller {
 		return "inputform";
 	}
 
-	@RequestMapping(value = "/selectReserveList.roi", method = RequestMethod.GET)
+	@RequestMapping(value = "/selectReserveList", method = RequestMethod.GET)
 	public @ResponseBody
-	Object selectReserveList(ReserveModel reserveModel) {
-		reserveModel.setChkin(new Timestamp(System.currentTimeMillis()));
+	Object selectReserveList(@RequestBody DashboardTimeModel timeModel) {
+		
 		List<ReserveModel> reserveModels = reserveDao
-				.selectReserve(reserveModel);
+				.selectReserveList(timeModel);
 		if (reserveModels.size() != 0) {
 			return reserveModels;
 		} else {

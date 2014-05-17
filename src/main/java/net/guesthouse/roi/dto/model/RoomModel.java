@@ -5,6 +5,7 @@ import java.sql.Timestamp;
 public class RoomModel {
 	private String roomNo;
 	private Timestamp chkin;
+	private int nights;
 	private boolean chked;
 
 	public String getRoomNo() {
@@ -15,6 +16,22 @@ public class RoomModel {
 		this.roomNo = roomNo;
 	}
 
+	public Timestamp getChkin() {
+		return chkin;
+	}
+
+	public void setChkin(Timestamp chkin) {
+		this.chkin = chkin;
+	}
+
+	public int getNights() {
+		return nights;
+	}
+
+	public void setNights(int nights) {
+		this.nights = nights;
+	}
+
 	public boolean isChked() {
 		return chked;
 	}
@@ -23,12 +40,4 @@ public class RoomModel {
 		this.chked = chked;
 	}
 
-	public Timestamp getChkin() {
-		return chkin;
-	}
-
-	public void setChkin(Timestamp chkin) {
-		this.chkin = chkin;
-	}
-	
 }

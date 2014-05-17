@@ -20,6 +20,7 @@
 	<resultMap type="net.guesthouse.roi.dto.model.RoomModel" id="RoomModel">
 		<result column="room_no" property="roomNo"/>
 		<result column="chkin" property="chkin"/>
+		<result column="nights" property="nights"/>
 	</resultMap>
 	
 	<sql id="baseColumns">
@@ -72,7 +73,7 @@
 	<select id="selectCalender" parameterType="net.guesthouse.roi.dto.model.DashboardTimeModel" resultMap="RoomModel">
 		/*selectCalender*/
 		select
-		chkin, room_no
+		chkin, room_no, nignts
 		from reserve
 		where chkin &gt;= #{start}
 		and chkin &lt; #{end};

@@ -32,8 +32,15 @@
 	<div class="row">
 		<div class="col-md-12 column">
 			<h1>
-				DashBoard
+				Calender
 			</h1>
+			<div class="text-center">
+			<h1>
+			<span id="month-toPrev" class="glyphicon glyphicon-chevron-left" style="cursor:pointer"></span>
+			<span id="month-header"></span>
+			<span id="month-toNext" class="glyphicon glyphicon-chevron-right" style="cursor:pointer"></span>
+			</h1>
+			</div>
 			<table class="table table-bordered">
 				<thead>
 					<tr>
@@ -113,11 +120,12 @@
 		<tr>
 			<td class="date {{weekendHelper this.calenderDate}}">{{dateHelper this.calenderDate}}</td>
 			{{#each this.rooms}}
-				<td class="room {{roomHelper this}}">{{#if this.chked}}!{{/if}}</td>
+				<td class="room {{roomHelper this}}" date="{{.}}">{{#if this.chked}}!{{/if}}</td>
 			{{/each}}
 		</tr>
 	{{/each}}
 	</script>
+	<script type="text/javascript" src="resources/js/util/formatDate.js"></script>
 	<script type="text/javascript" src="resources/js/calender.js">
 	</script>	
 </body>

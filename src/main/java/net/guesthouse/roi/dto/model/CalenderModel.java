@@ -1,6 +1,7 @@
 package net.guesthouse.roi.dto.model;
 
 import java.sql.Timestamp;
+import java.util.ArrayList;
 import java.util.List;
 
 public class CalenderModel {
@@ -21,6 +22,14 @@ public class CalenderModel {
 
 	public void setRooms(List<RoomModel> rooms) {
 		this.rooms = rooms;
+	}
+
+	public void putRooms(RoomModel room) {
+		if (this.rooms == null) {
+			this.rooms = new ArrayList<RoomModel>();
+		}
+
+		this.rooms.add(room);
 	}
 
 }

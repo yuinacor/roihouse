@@ -3,35 +3,37 @@
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="net.guesthouse.roi.ReserveModel">
-	<resultMap type="net.guesthouse.roi.dto.model.ReserveModel" id="ReserveModel">
-		<id column="id" property="id"/>
-		<result column="rtype" property="rType"/>
-		<result column="reserv_date" property="reservDate"/>
-		<result column="room_no" property="roomNo"/>
-		<result column="chkin" property="chkin"/>
-		<result column="nights" property="nights"/>
-		<result column="rname" property="rName"/>
-		<result column="pay_per_day" property="payPerDay"/>
-		<result column="payment" property="payment"/>
-		<result column="deposit" property="deposit"/>
-		<result column="balance" property="balance"/>
-		<result column="via" property="via"/>
+	<resultMap type="net.guesthouse.roi.dto.model.ReserveModel"
+		id="ReserveModel">
+		<id column="id" property="id" />
+		<result column="rtype" property="rType" />
+		<result column="reserv_date" property="reservDate" />
+		<result column="room_no" property="roomNo" />
+		<result column="chkin" property="chkin" />
+		<result column="nights" property="nights" />
+		<result column="rname" property="rName" />
+		<result column="pay_per_day" property="payPerDay" />
+		<result column="payment" property="payment" />
+		<result column="deposit" property="deposit" />
+		<result column="balance" property="balance" />
+		<result column="via" property="via" />
 	</resultMap>
 	<resultMap type="net.guesthouse.roi.dto.model.RoomModel" id="RoomModel">
-		<result column="room_no" property="roomNo"/>
-		<result column="chkin" property="chkin"/>
-		<result column="nights" property="nights"/>
+		<id column="id" property="id" />
+		<result column="room_no" property="roomNo" />
+		<result column="chkin" property="chkin" />
+		<result column="nights" property="nights" />
 	</resultMap>
-	
+
 	<sql id="baseColumns">
 		id,rtype,room_no,chkin,nights,rname,pay_per_day,payment,deposit,balance,via
 	</sql>
-	
+
 	<insert id="insertReserve" parameterType="net.guesthouse.roi.dto.model.ReserveModel">
 		/*insertReserve*/
-		insert into reserve ( 
+		insert into reserve (
 		rtype,room_no,chkin,nights,rname,pay_per_day,payment,deposit,balance,via
-		) 
+		)
 		values(
 		#{rType},
 		#{roomNo},
@@ -45,39 +47,43 @@
 		#{via}
 		)
 	</insert>
-	
+
 	<update id="updateDeposit" parameterType="net.guesthouse.roi.dto.model.ReserveModel">
 		/*updateDeposit*/
 		update reserve
 		set deposit = #{deposit}
 		where id = #{id}
 	</update>
-	
-	<select id="selectReserve" parameterType="net.guesthouse.roi.dto.model.ReserveModel" resultMap="ReserveModel">
+
+	<select id="selectReserve" parameterType="net.guesthouse.roi.dto.model.ReserveModel"
+		resultMap="ReserveModel">
 		/*selectReserve*/
 		select
-		<include refid="baseColumns"/>
+		<include refid="baseColumns" />
 		from reserve
 		where chkin &gt;= #{chkin}
 	</select>
-	
-	<select id="selectReserveList" parameterType="net.guesthouse.roi.dto.model.DashboardTimeModel" resultMap="ReserveModel">
+
+	<select id="selectReserveList" parameterType="net.guesthouse.roi.dto.model.DashboardTimeModel"
+		resultMap="ReserveModel">
 		/*selectReserveList*/
 		select
-		<include refid="baseColumns"/>
+		<include refid="baseColumns" />
 		from reserve
 		where chkin &gt;= #{start}
 		and chkin &lt; #{end}
 	</select>
-	
-	<select id="selectCalender" parameterType="net.guesthouse.roi.dto.model.DashboardTimeModel" resultMap="RoomModel">
+
+	<select id="selectCalender" parameterType="net.guesthouse.roi.dto.model.DashboardTimeModel"
+		resultMap="ReserveModel">
 		/*selectCalender*/
 		select
-		chkin, room_no, nignts
-		from reserve
+		id, chkin, room_no, nights
+		from
+		reserve
 		where chkin &gt;= #{start}
 		and chkin &lt; #{end};
-		
+
 	</select>
 
 </mapper>

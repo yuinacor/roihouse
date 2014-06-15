@@ -47,9 +47,6 @@
 						<li>
 							<a href="calender.roi">예약현황</a>
 						</li>
-						<li>
-							<a href="inputform.roi">예약등록</a>
-						</li>
 					</ul>
 				
 					<ul class="nav navbar-nav navbar-right">

@@ -1,6 +1,5 @@
 package net.guesthouse.roi.dto.model;
 
-
 public class RoomModel {
 	private int id;
 	private String roomNo;
@@ -30,5 +29,4 @@ public class RoomModel {
 		this.chked = chked;
 	}
 
-	
 }

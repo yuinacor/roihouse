@@ -6,7 +6,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import net.guesthouse.roi.DashBoardContoller;
 import net.guesthouse.roi.dto.model.CalenderModel;
 import net.guesthouse.roi.dto.model.DashboardTimeModel;
 import net.guesthouse.roi.dto.model.ReserveModel;
@@ -22,10 +21,10 @@ public class RoomService {
 	private static Logger LOGGER = LoggerFactory.getLogger(RoomService.class);
 
 	public final long ONE_DAY = 1000 * 60 * 60 * 24;
-	public final long NINE_HOUR = 9 * 60 * 60  * 1000;
+	public final long NINE_HOUR = 9 * 60 * 60 * 1000;
 	public final String[] roomNos = { "201", "202", "203", "301", "302", "303",
-			"401", "402", "dm1", "dm2", "dm3", "dm4", "dm5", "df1", "df2",
-			"df3", "df4", "df5" };
+			"401", "402", "df1", "df2", "df3", "df4", "df5", "dm1", "dm2",
+			"dm3", "dm4", "dm5" };
 
 	public List<CalenderModel> makeCalender(DashboardTimeModel timeModel,
 			List<ReserveModel> reserveModels) {
@@ -34,9 +33,9 @@ public class RoomService {
 		Timestamp end = timeModel.getEnd();
 		Timestamp now = start;
 
-//		LOGGER.debug("start : {}, end : {}", start, end);
+		// LOGGER.debug("start : {}, end : {}", start, end);
 
-//		 reserveModels = correctTimestamp(reserveModels);
+		// reserveModels = correctTimestamp(reserveModels);
 
 		List<CalenderModel> models = new ArrayList<CalenderModel>();
 
@@ -46,9 +45,9 @@ public class RoomService {
 
 			long nowTime = now.getTime();
 
-//			LOGGER.info("containsKey - {} : {}", nowTime,
-//					map.containsKey(nowTime));
-			
+			// LOGGER.info("containsKey - {} : {}", nowTime,
+			// map.containsKey(nowTime));
+
 			CalenderModel calenderModel = null;
 			if (map.containsKey(nowTime)) {
 				calenderModel = map.get(nowTime);
@@ -64,7 +63,8 @@ public class RoomService {
 
 	private List<ReserveModel> correctTimestamp(List<ReserveModel> models) {
 		for (ReserveModel reserve : models) {
-			reserve.getChkin().setTime(reserve.getChkin().getTime() + NINE_HOUR);
+			reserve.getChkin()
+					.setTime(reserve.getChkin().getTime() + NINE_HOUR);
 		}
 
 		return models;
@@ -90,17 +90,17 @@ public class RoomService {
 		}
 
 		// test
-//		for (long key : calenderMap.keySet()) {
-//
-//			CalenderModel data = calenderMap.get(key);
-//
-//			LOGGER.info("key : {}, data : {}", key, data);
-//			LOGGER.info("room length : {} ", data.getRooms().size());
-//			for (RoomModel room : data.getRooms()) {
-//				LOGGER.info("rooms : {}", room.getRoomNo());
-//			}
-//
-//		}
+		// for (long key : calenderMap.keySet()) {
+		//
+		// CalenderModel data = calenderMap.get(key);
+		//
+		// LOGGER.info("key : {}, data : {}", key, data);
+		// LOGGER.info("room length : {} ", data.getRooms().size());
+		// for (RoomModel room : data.getRooms()) {
+		// LOGGER.info("rooms : {}", room.getRoomNo());
+		// }
+		//
+		// }
 
 		return calenderMap;
 	}

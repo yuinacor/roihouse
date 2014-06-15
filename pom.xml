@@ -280,6 +280,7 @@
 					<url>http://roihouse.cafe24.com/manager/text</url>
 					<username>roihouse</username>
 					<password>ssoskdl27</password>
+					<path>/</path>
 					<warFile>target\ROOT.war</warFile>
 				</configuration>
 

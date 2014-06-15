@@ -9,7 +9,6 @@ import java.util.Map;
 import net.guesthouse.roi.dto.model.CalenderModel;
 import net.guesthouse.roi.dto.model.DashboardTimeModel;
 import net.guesthouse.roi.dto.model.ReserveModel;
-import net.guesthouse.roi.dto.model.RoomModel;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -22,9 +21,6 @@ public class RoomService {
 
 	public final long ONE_DAY = 1000 * 60 * 60 * 24;
 	public final long NINE_HOUR = 9 * 60 * 60 * 1000;
-	public final String[] roomNos = { "201", "202", "203", "301", "302", "303",
-			"401", "402", "df1", "df2", "df3", "df4", "df5", "dm1", "dm2",
-			"dm3", "dm4", "dm5" };
 
 	public List<CalenderModel> makeCalender(DashboardTimeModel timeModel,
 			List<ReserveModel> reserveModels) {
@@ -61,15 +57,6 @@ public class RoomService {
 		return models;
 	}
 
-	private List<ReserveModel> correctTimestamp(List<ReserveModel> models) {
-		for (ReserveModel reserve : models) {
-			reserve.getChkin()
-					.setTime(reserve.getChkin().getTime() + NINE_HOUR);
-		}
-
-		return models;
-	}
-
 	private Map<Long, CalenderModel> calenderListMaker(
 			List<ReserveModel> reserveModels) {
 		Map<Long, CalenderModel> calenderMap = new HashMap<Long, CalenderModel>();
@@ -84,7 +71,8 @@ public class RoomService {
 				} else {
 					caModel = new CalenderModel();
 				}
-				caModel.putRooms(reserve.getId(), reserve.getRoomNo());
+				caModel.putRooms(reserve.getId(), reserve.getRoomNo(),
+						reserve.getrName());
 				calenderMap.put(chkin + ONE_DAY * i, caModel);
 			}
 		}
@@ -105,13 +93,4 @@ public class RoomService {
 		return calenderMap;
 	}
 
-	private List<RoomModel> roomFilter(Timestamp time,
-			List<ReserveModel> reserveModels) {
-		List<RoomModel> list = new ArrayList<RoomModel>();
-		for (ReserveModel reserve : reserveModels) {
-			for (int i = 0; i < reserve.getNights(); i++) {
-			}
-		}
-		return list;
-	}
 }

@@ -81,9 +81,8 @@
 		resultMap="ReserveModel">
 		/*selectCalender*/
 		select
-		id, chkin, room_no, nights
-		from
-		reserve
+		r.id, r.chkin, r.room_no, r.nights, rr.rname
+		from reserve r join reserver rr on r.reserver = rr.id
 		where chkin &gt;= #{start}
 		and chkin &lt; #{end};
 

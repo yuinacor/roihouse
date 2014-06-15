@@ -4,6 +4,7 @@ public class RoomModel {
 	private int id;
 	private String roomNo;
 	private boolean chked = false;
+	private String rName;
 
 	public int getId() {
 		return id;
@@ -27,6 +28,14 @@ public class RoomModel {
 
 	public void setChked(boolean chked) {
 		this.chked = chked;
+	}
+
+	public String getrName() {
+		return rName;
+	}
+
+	public void setrName(String rName) {
+		this.rName = rName;
 	}
 
 }

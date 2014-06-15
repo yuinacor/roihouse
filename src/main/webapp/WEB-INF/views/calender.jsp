@@ -155,7 +155,7 @@
 			<td class="date {{weekendHelper this.calenderDate}}">{{dateHelper this.calenderDate}}</td>
 			{{#each this.rooms}}
 				<td class="room {{roomHelper this}} {{roomTypeHelper this.roomNo}}" 
-				{{#if this.id}}reserveId="{{this.id}}"{{/if}} roomNo="{{this.roomNo}}">{{#if this.chked}}예약{{/if}}</td>
+				{{#if this.id}}reserveId="{{this.id}}"{{/if}} roomNo="{{this.roomNo}}">{{#if this.chked}}{{this.rName}}{{/if}}</td>
 			{{/each}}
 		</tr>
 	{{/each}}

@@ -2,12 +2,6 @@ package net.guesthouse.roi.dto.model;
 
 import java.sql.Timestamp;
 
-import net.guesthouse.roi.util.TimestampSerializer;
-
-import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
-import com.fasterxml.jackson.databind.annotation.JsonSerialize;
-import com.fasterxml.jackson.databind.deser.std.DateDeserializers.TimestampDeserializer;
-
 public class ReserveModel {
 	private int id;
 	private String rType;
@@ -16,6 +10,7 @@ public class ReserveModel {
 	private Timestamp chkin;
 	private int nights;
 	private int reserver;
+	private String rName;
 	private int payPerDay;
 	private int payment;
 	private int deposit;
@@ -78,6 +73,14 @@ public class ReserveModel {
 		this.reserver = reserver;
 	}
 
+	public String getrName() {
+		return rName;
+	}
+
+	public void setrName(String rName) {
+		this.rName = rName;
+	}
+
 	public int getPayPerDay() {
 		return payPerDay;
 	}
@@ -117,4 +120,5 @@ public class ReserveModel {
 	public void setVia(String via) {
 		this.via = via;
 	}
+
 }

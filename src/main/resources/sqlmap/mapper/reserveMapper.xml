@@ -12,6 +12,7 @@
 		<result column="chkin" property="chkin" />
 		<result column="nights" property="nights" />
 		<result column="reserver" property="reserver" />
+		<result column="rname" property="rName" />
 		<result column="pay_per_day" property="payPerDay" />
 		<result column="payment" property="payment" />
 		<result column="deposit" property="deposit" />
@@ -60,7 +61,7 @@
 		resultMap="ReserveModel">
 		/*selectReserve*/
 		select
-		<include refid="baseColumns" />
+		<include refid="baseColumns"/>
 		from reserve
 		where chkin &gt;= #{chkin}
 	</select>
@@ -69,8 +70,9 @@
 		resultMap="ReserveModel">
 		/*selectReserveList*/
 		select
-		<include refid="baseColumns" />
-		from reserve
+		r.*,
+		rr.rname
+		from reserve r join reserver rr on r.reserver = rr.id
 		where chkin &gt;= #{start}
 		and chkin &lt; #{end}
 	</select>

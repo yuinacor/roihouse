@@ -32,7 +32,7 @@
 	<script type="text/javascript" src="resources/bootstrap/js/bootstrap.min.js"></script>
 	<script type="text/javascript" src="resources/js/handlebars-v1.3.0.js"></script>
 </head>
-
+<decorator:head />
 <body>
 <nav class="navbar navbar-default" role="navigation">
 				<div class="navbar-header">

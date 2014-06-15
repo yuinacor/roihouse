@@ -7,11 +7,13 @@
 	var tplHead = Handlebars.compile($("#tpl-head").html());
 	
 	var roomNoSet = {
-			room : ["201", "202", "203", "301", "302", "303",
-	    			"401", "402"],
+	    	room2nd : ["201", "202", "203"],
+	    	room3rd : ["301", "302", "303"],
+	    	room4th : ["401", "402"],
 			df : ["df1", "df2", "df3", "df4", "df5"],
 			dm : ["dm1", "dm2", "dm3", "dm4", "dm5"]
 	};
+	roomNoSet.room = roomNoSet.room2nd.concat(roomNoSet.room3rd).concat(roomNoSet.room4th);
 	
 	var roomNos = roomNoSet.room.concat(roomNoSet.df).concat(roomNoSet.dm);
 	
@@ -58,6 +60,36 @@
 			return "checked"
 		} else {
 			return "unchecked";
+		}
+	});
+	
+	Handlebars.registerHelper("roomTypeHelper", function(roomNo){
+		
+//		console.log(roomNo);
+//		console.log("room : " + $.inArray(roomNo, roomNoSet.room));
+//		console.log("room2nd : " + $.inArray(roomNo, roomNoSet.room2nd));
+//		console.log("room3nd : " + $.inArray(roomNo, roomNoSet.room3rd));
+//		console.log("room4nd : " + $.inArray(roomNo, roomNoSet.room4th));
+//		
+//		console.log("df : " + $.inArray(roomNo, roomNoSet.df));
+//		console.log("dm : " + $.inArray(roomNo, roomNoSet.dm));
+		
+		
+		if($.inArray(roomNo, roomNoSet.room) !== -1){
+			if($.inArray(roomNo, roomNoSet.room2nd ) !== -1){
+				return "room2nd";
+			} else if($.inArray(roomNo, roomNoSet.room3rd) !== -1){
+				return "room3rd";
+			} else if($.inArray(roomNo, roomNoSet.room4th) !== -1){
+				return "room4th";
+			}
+			return "room";
+		} else if($.inArray(roomNo, roomNoSet.df) !== -1){
+			return "df";
+		} else if($.inArray(roomNo, roomNoSet.dm) !== -1){
+			return "dm";
+		} else {
+			return "";
 		}
 	});
 	
@@ -139,7 +171,7 @@
 		
 		var cancel = function(){
 			flag = false;
-			$(".room.success").removeClass("success");
+			$(".room.reserved").removeClass("reserved");
 		};
 		
 		var isSameRoom = function($target){
@@ -167,7 +199,7 @@
 		};
 		
 		var getChkinDate = function(){
-			var selected = $tableBody.find(".success");
+			var selected = $tableBody.find(".mouseover");
 			var dateArr = [];
 			
 			for(var i =0;i< selected.length;i++){
@@ -187,12 +219,11 @@
 			
 			if(isReserved($target)){
 				var $selected = $("[reserveid="+$target.attr("reserveid")+"]");
-				$selected.removeClass("warning");
-				$selected.addClass("active");
+				$selected.addClass("reserved");
 			}
 			
 			if(isAvailable($target)){
-				$target.addClass("success");
+				$target.addClass("mouseover");
 			} else {
 				cancel();
 			}
@@ -202,15 +233,14 @@
 			e.stopPropagation();
 			var $target = $(e.target);
 			if(!flag){
-				if($target.hasClass("unchecked") && $target.hasClass("success")){
-					$target.removeClass("success");
+				if($target.hasClass("unchecked") && $target.hasClass("mouseover")){
+					$target.removeClass("mouseover");
 				}
 			}
 			
 			if(isReserved($target)){
 				var $selected = $("[reserveid="+$target.attr("reserveid")+"]");
-				$selected.addClass("warning");
-				$selected.removeClass("active");
+				$selected.removeClass("reserved");
 			}
 		});
 		
@@ -224,7 +254,7 @@
 			e.stopPropagation();
 			var $target = $(e.target);
 			if(isAvailable($target)){
-				var nights = $tableBody.find(".success").length;
+				var nights = $tableBody.find(".mouseover").length;
 				var roomNo = state.roomNo;
 				var chkin = now.getformatDate(getChkinDate());
 				console.log(chkin);

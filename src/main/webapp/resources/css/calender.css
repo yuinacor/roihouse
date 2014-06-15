@@ -1,0 +1,19 @@
+#table-body .room2nd, #table-body .room4th, #table-body .dm {
+	background-color: white;
+}
+
+#table-body .room3rd, #table-body .df {
+	background-color: gray;
+}
+
+#table-body .mouseover {
+	background-color: green;
+}
+
+#table-body .reserved {
+	background-color: red;
+}
+
+#table-body .reserved.mouseover {
+	background-color: yellow;
+}

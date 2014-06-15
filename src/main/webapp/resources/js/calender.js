@@ -16,6 +16,7 @@
 	var roomNos = roomNoSet.room.concat(roomNoSet.df).concat(roomNoSet.dm);
 	
 	var $tableBody = $("#table-body");
+	var $tableHead = $("#table-head");
 	var $reserveFormModal = $("#reserveFormModal");
 	
 	var $form = {
@@ -76,7 +77,7 @@
 	};
 	
 	var createCalenderHeader = function(){
-		tplHead({rooms : roomNos});
+		$tableHead.append(tplHead({rooms : roomNos}));
 	};
 	
 	var createCalender = function(){

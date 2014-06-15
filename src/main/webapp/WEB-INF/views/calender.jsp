@@ -42,10 +42,8 @@
 			</h1>
 			</div>
 			<table class="table table-bordered">
-				<thead>
-					<tr>
-						
-					</tr>
+				<thead id="table-head">
+					
 				</thead>
 					<tbody id="table-body"  onselectstart="return false">
 				</tbody>
@@ -164,14 +162,12 @@
     ================================================== -->
 	<!-- Placed at the end of the document so the pages load faster -->
 	<script type="handlebars-template" id="tpl-head">
-	{{#each data}}
 		<tr>
 			<td>#</td>
 			{{#each rooms}}
 			<td>{{this}}</td>
 			{{/each}}
 		</tr>
-	{{/each}}
 	</script>
 	<script type="handlebars-template" id="tpl-body">
 	{{#each data}}

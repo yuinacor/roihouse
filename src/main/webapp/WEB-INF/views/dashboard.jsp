@@ -80,6 +80,9 @@
 						<th>
 							경유
 						</th>
+						<th>
+							비고
+						</th>
 					</tr>
 				</thead>
 				<tbody id="table-body">
@@ -132,9 +135,13 @@
 		<td>
 			{{ this.via}}
 		</td>
+		<td>
+			{{ this.via}}
+		</td>
 	</tr>
 	{{/each}}
 	</script>
+	<script type="text/javascript" src="resources/js/util/formatDate.js"></script>
 	<script type="text/javascript" src="resources/js/dashboard.js"></script>	
 </body>
 </html>

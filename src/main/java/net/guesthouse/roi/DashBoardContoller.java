@@ -43,7 +43,7 @@ public class DashBoardContoller {
 		return "inputform";
 	}
 
-	@RequestMapping(value = "/selectReserveList", method = RequestMethod.GET)
+	@RequestMapping(value = "/selectReserveList.roi", method = RequestMethod.POST)
 	public @ResponseBody
 	Object selectReserveList(@RequestBody DashboardTimeModel timeModel) {
 		
@@ -57,28 +57,26 @@ public class DashBoardContoller {
 		}
 	}
 
-	@RequestMapping(value = "/postInputForm", method = RequestMethod.POST)
+	@RequestMapping(value = "/postInputForm.roi", method = RequestMethod.POST)
 	@Transactional
 	public @ResponseBody
 	Object postInputForm(@RequestBody RContainer value) {
 		LOGGER.debug("reserverModel : {}, reserveModel : {}",
 				value.getReserverModel(), value.getReserveModel());
-		int result = reserveDao.insertReserve(value.getReserveModel());
-
-		//TODO
-		//��대����� ��ㅽ�⑦�����吏� ��� ��� ������濡� 蹂�寃�...
-		//��������� 寃쎌�곕�� 媛���� ������踰���몃�� 硫���쇱�� �����쇰㈃ 湲곗〈 ������ ���蹂대�� 媛���몄�ㅻ��嫄몃��?
+		int result = reserverDao.insertReserver(value.getReserverModel());
 		if (result < 0) {
 			return false;
 		}
-		result = reserverDao.insertReserver(value.getReserverModel());
+		value.getReserveModel().setReserver(value.getReserverModel().getId());
+		result = reserveDao.insertReserve(value.getReserveModel());
+
 		if (result < 0) {
 			return false;
 		}
 		return true;
 	}
 
-	@RequestMapping(value = "/insertReserve", method = RequestMethod.POST)
+	@RequestMapping(value = "/insertReserve.roi", method = RequestMethod.POST)
 	@Transactional
 	public @ResponseBody
 	Object insertReserve(@RequestBody ReserveModel reserveModel) {
@@ -90,7 +88,7 @@ public class DashBoardContoller {
 		return true;
 	}
 
-	@RequestMapping(value = "/insertReserver", method = RequestMethod.POST)
+	@RequestMapping(value = "/insertReserver.roi", method = RequestMethod.POST)
 	@Transactional
 	public @ResponseBody
 	Object insertReserver(@RequestBody ReserverModel reserverModel) {

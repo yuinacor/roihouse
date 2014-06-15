@@ -1,23 +1,23 @@
-drop database roi;
+drop database roihouse;
 
-drop user 'roi'@'localhost';
+drop user 'roihouse'@'localhost';
 
-create database roi;
+create database roihouse;
 
 
-create user 'roi'@'localhost' identified by 'roi';
-grant all privileges on roi.* to roi@localhost;
+create user 'roihouse'@'localhost' identified by 'roihouse';
+grant all privileges on roihouse.* to roihouse@localhost;
 
 flush privileges;
 
-create table roi.user(
+create table roihouse.user(
 id varchar(50) primary key,
 pwd varchar(100) not null,
 permission varchar(30) default 'viewer'
 );
 
-create table roi.reserver(
-id integer primary key,
+create table roihouse.reserver(
+id integer primary key auto_increment,
 rname varchar(50) not null,
 gender varchar(1),
 nationality varchar(50),
@@ -25,18 +25,20 @@ phone varchar(20),
 email varchar(50)
 );
 
-create table roi.reserve(
-id integer primary key,
+create table roihouse.reserve(
+id integer primary key auto_increment,
 rtype varchar(20),
 reserve_date timestamp not null,
 room_no varchar(5),
 chkin timestamp not null,
-night integer not null,
-rname varchar(50),
-payPerDay integer,
+nights integer not null,
+reserver integer,
+pay_per_day integer,
+payment integer,
 deposit integer,
 balance integer,
-via varchar(50)
+via varchar(50),
+memo varchar(500)
 );
 
-insert into roi.user(id, pwd, permission) values('admin', password('admin'), 'viewer');
+insert into roihouse.user(id, pwd, permission) values('admin', password('admin'), 'viewer');

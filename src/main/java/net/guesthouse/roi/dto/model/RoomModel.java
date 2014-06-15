@@ -4,6 +4,7 @@ package net.guesthouse.roi.dto.model;
 public class RoomModel {
 	private int id;
 	private String roomNo;
+	private boolean chked = false;
 
 	public int getId() {
 		return id;
@@ -21,4 +22,13 @@ public class RoomModel {
 		this.roomNo = roomNo;
 	}
 
+	public boolean isChked() {
+		return chked;
+	}
+
+	public void setChked(boolean chked) {
+		this.chked = chked;
+	}
+
+	
 }

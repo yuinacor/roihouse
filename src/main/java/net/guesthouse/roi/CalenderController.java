@@ -34,7 +34,7 @@ public class CalenderController {
 		return "calender";
 	}
 
-	@RequestMapping(value = "/selectCalender", method = RequestMethod.POST)
+	@RequestMapping(value = "/selectCalender.roi", method = RequestMethod.POST)
 	public @ResponseBody
 	List<CalenderModel> selectCalender(@RequestBody DashboardTimeModel timeModel) {
 		List<ReserveModel> reserveModels = reserveDao.selectCalender(timeModel);

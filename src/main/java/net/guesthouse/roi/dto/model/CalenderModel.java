@@ -2,11 +2,17 @@ package net.guesthouse.roi.dto.model;
 
 import java.sql.Timestamp;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class CalenderModel {
 	private Timestamp calenderDate;
 	private List<RoomModel> rooms;
+	
+	private final String[] roomNos = { "201", "202", "203", "301", "302", "303",
+			"401", "402", "dm1", "dm2", "dm3", "dm4", "dm5", "df1", "df2",
+			"df3", "df4", "df5" };
+
 
 	public Timestamp getCalenderDate() {
 		return calenderDate;
@@ -24,12 +30,18 @@ public class CalenderModel {
 		this.rooms = rooms;
 	}
 
-	public void putRooms(RoomModel room) {
+	public void putRooms(int id, String room) {
 		if (this.rooms == null) {
-			this.rooms = new ArrayList<RoomModel>();
+			this.rooms = new ArrayList<RoomModel>(roomNos.length);
+			for(String roomNo : roomNos){
+				RoomModel roomModel = new RoomModel();
+				roomModel.setRoomNo(roomNo);
+				this.rooms.add(roomModel);
+			}
 		}
-
-		this.rooms.add(room);
+		RoomModel tempRoom = this.rooms.get(Arrays.asList(roomNos).indexOf(room));
+		tempRoom.setId(id);
+		tempRoom.setChked(true);
 	}
 
 }

@@ -4,10 +4,8 @@
 
 var FormatDate = function(date) {
 		var _year = date.getFullYear();
-		//month를 0부터 카운트하므로 보
 		var _month = date.getMonth()+1;
 
-		//문자열로 된 연,월을 받아서 셋하는 메서
 		this.setDate = function(date) {
 			_year = Number(date.split("-")[0]);
 			_month = Number(date.split("-")[1]);
@@ -72,4 +70,21 @@ var FormatDate = function(date) {
 		this.getNextMonth = function(){
 			return getNext();
 		};
+		
+		this.getformatDate = function(time){
+			var now = new Date(time);
+			var year = now.getFullYear();
+			var month = now.getMonth() + 1;
+			var date = now.getDate();
+			
+			if(month < 10){
+				month = "0" + month;
+			}
+			
+			if(date < 10){
+				date = "0" + date;
+			}
+			return year + "-" + month +"-" +date;
+		};
 	};
+	

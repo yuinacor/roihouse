@@ -36,7 +36,7 @@ public class RoomService {
 
 //		LOGGER.debug("start : {}, end : {}", start, end);
 
-		 reserveModels = correctTimestamp(reserveModels);
+//		 reserveModels = correctTimestamp(reserveModels);
 
 		List<CalenderModel> models = new ArrayList<CalenderModel>();
 
@@ -76,18 +76,15 @@ public class RoomService {
 
 		for (ReserveModel reserve : reserveModels) {
 			for (int i = 0; i < reserve.getNights(); i++) {
-				RoomModel room = new RoomModel();
 				CalenderModel caModel = null;
 				long chkin = reserve.getChkin().getTime();
 
-				room.setId(reserve.getId());
-				room.setRoomNo(reserve.getRoomNo());
-				if (calenderMap.containsKey(reserve.getChkin())) {
-					caModel = calenderMap.get(reserve.getChkin());
+				if (calenderMap.containsKey(chkin + ONE_DAY * i)) {
+					caModel = calenderMap.get(chkin + ONE_DAY * i);
 				} else {
 					caModel = new CalenderModel();
 				}
-				caModel.putRooms(room);
+				caModel.putRooms(reserve.getId(), reserve.getRoomNo());
 				calenderMap.put(chkin + ONE_DAY * i, caModel);
 			}
 		}

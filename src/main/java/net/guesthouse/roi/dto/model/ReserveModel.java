@@ -15,7 +15,7 @@ public class ReserveModel {
 	private String roomNo;
 	private Timestamp chkin;
 	private int nights;
-	private String rName;
+	private int reserver;
 	private int payPerDay;
 	private int payment;
 	private int deposit;
@@ -70,12 +70,12 @@ public class ReserveModel {
 		this.nights = nights;
 	}
 
-	public String getrName() {
-		return rName;
+	public int getReserver() {
+		return reserver;
 	}
 
-	public void setrName(String rName) {
-		this.rName = rName;
+	public void setReserver(int reserver) {
+		this.reserver = reserver;
 	}
 
 	public int getPayPerDay() {
@@ -117,5 +117,4 @@ public class ReserveModel {
 	public void setVia(String via) {
 		this.via = via;
 	}
-
 }

@@ -23,7 +23,7 @@ $(document).ready(
 			var makeReserve = function(data) {
 				var reserve = {};
 				var reserveName = [ 'reservDate', 'roomNo', 'chkin', 'nights',
-						'rName', 'payPerDay', 'payment', 'deposit', 'balance',
+						'reserver', 'payPerDay', 'payment', 'deposit', 'balance',
 						'via' ];
 				for ( var i in reserveName) {
 					for ( var j in data) {

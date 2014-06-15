@@ -28,7 +28,7 @@ public class ReserveDao {
 		return commonDao.selectList(namespace + "selectReserveList", timeModel);
 	}
 	
-	public List<RoomModel> selectCalender(DashboardTimeModel timeModel){
+	public List<ReserveModel> selectCalender(DashboardTimeModel timeModel){
 		return commonDao.selectList(namespace + "selectCalender", timeModel);
 	}
 	

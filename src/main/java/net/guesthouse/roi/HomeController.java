@@ -35,7 +35,7 @@ public class HomeController {
 		return "home";
 	}
 
-	@RequestMapping(value = "/login", method = RequestMethod.POST)
+	@RequestMapping(value = "/login.roi", method = RequestMethod.POST)
 	public String login(UserModel userModel, Model model, HttpSession session) {
 		UserModel logedUser = userDao.selectUser(userModel);
 		if (logedUser != null) {
@@ -47,7 +47,7 @@ public class HomeController {
 		return "home";
 	}
 
-	@RequestMapping(value = "/logout", method = RequestMethod.GET)
+	@RequestMapping(value = "/logout.roi", method = RequestMethod.GET)
 	public String logout(SessionStatus sessionStatus) {
 		sessionStatus.setComplete();
 		return "home";

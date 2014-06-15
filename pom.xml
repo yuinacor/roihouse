@@ -173,42 +173,119 @@
 			<version>3.1</version>
 		</dependency>
 	</dependencies>
+	<profiles>
+		<profile>
+			<id>local</id>
+			<activation>
+				<activeByDefault>true</activeByDefault>
+			</activation>
+			<build>
+				<plugins>
+					<plugin>
+						<artifactId>maven-war-plugin</artifactId>
+						<configuration>
+							<webappDirectory>${deploy.dir}</webappDirectory>
+							<ignoreWebxml>true</ignoreWebxml>
+							<webResources>
+								<resource>
+									<directory>src/conf/local</directory>
+									<targetPath>WEB-INF/classes</targetPath>
+								</resource>
+							</webResources>
+						</configuration>
+					</plugin>
+				</plugins>
+				<testResources>
+					<testResource>
+						<directory>src/conf/local</directory>
+					</testResource>
+				</testResources>
+			</build>
+		</profile>
+		<profile>
+			<id>release</id>
+			<build>
+				<plugins>
+					<plugin>
+						<artifactId>maven-war-plugin</artifactId>
+						<configuration>
+							<webappDirectory>${deploy.dir}</webappDirectory>
+							<ignoreWebxml>true</ignoreWebxml>
+							<webResources>
+								<resource>
+									<directory>src/conf/release</directory>
+									<targetPath>WEB-INF/classes</targetPath>
+								</resource>
+							</webResources>
+						</configuration>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+	</profiles>
 	<build>
 		<plugins>
 			<plugin>
-				<artifactId>maven-eclipse-plugin</artifactId>
-				<version>2.9</version>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-war-plugin</artifactId>
 				<configuration>
-					<additionalProjectnatures>
-						<projectnature>org.springframework.ide.eclipse.core.springnature</projectnature>
-					</additionalProjectnatures>
-					<additionalBuildcommands>
-						<buildcommand>org.springframework.ide.eclipse.core.springbuilder</buildcommand>
-					</additionalBuildcommands>
-					<downloadSources>true</downloadSources>
-					<downloadJavadocs>true</downloadJavadocs>
+					<warSourceDirectory>src/main/webapp</warSourceDirectory>
+				</configuration>
+			</plugin>
+
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<configuration>
+					<source>1.6</source>
+					<target>1.6</target>
+					<encoding>UTF-8</encoding>
 				</configuration>
 			</plugin>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-compiler-plugin</artifactId>
-				<version>2.5.1</version>
+				<artifactId>maven-resources-plugin</artifactId>
 				<configuration>
-					<source>1.6</source>
-					<target>1.6</target>
-					<compilerArgument>-Xlint:all</compilerArgument>
-					<showWarnings>true</showWarnings>
-					<showDeprecation>true</showDeprecation>
+					<encoding>UTF-8</encoding>
+				</configuration>
+			</plugin>
+
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-eclipse-plugin</artifactId>
+				<configuration>
+					<wtpContextName>/</wtpContextName>
+					<wtpversion>2.0</wtpversion>
+					<downloadJavadocs>true</downloadJavadocs>
+					<downloadSources>true</downloadSources>
+				</configuration>
+			</plugin>
+
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-clean-plugin</artifactId>
+				<configuration>
+					<filesets>
+						<fileset>
+							<directory>${deploy.dir}</directory>
+						</fileset>
+					</filesets>
 				</configuration>
 			</plugin>
 			<plugin>
-				<groupId>org.codehaus.mojo</groupId>
-				<artifactId>exec-maven-plugin</artifactId>
-				<version>1.2.1</version>
+				<groupId>org.apache.tomcat.maven</groupId>
+				<artifactId>tomcat7-maven-plugin</artifactId>
+				<version>2.0</version>
 				<configuration>
-					<mainClass>org.test.int1.Main</mainClass>
+					<url>http://roihouse.cafe24.com/manager/text</url>
+					<username>roihouse</username>
+					<password>ssoskdl27</password>
+					<warFile>target\ROOT.war</warFile>
 				</configuration>
+
 			</plugin>
 		</plugins>
+
 	</build>
+
 </project>

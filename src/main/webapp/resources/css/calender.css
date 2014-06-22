@@ -3,17 +3,17 @@
 }
 
 #table-body .room3rd, #table-body .df {
-	background-color: gray;
+	background-color: #EEEEEE;
 }
 
 #table-body .mouseover {
-	background-color: green;
+	background-color: FF9933;
 }
 
-#table-body .reserved {
+#table-body .checked {
 	background-color: red;
 }
 
-#table-body .reserved.mouseover {
+#table-body .checked:hover {
 	background-color: yellow;
 }

@@ -35,7 +35,7 @@
 	
 	<!-- modal -->
 
-<div class="modal fade" id="reserveFormModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<div class="modal fade" id="reserveFormModal" tabindex="-1" role="dialog" aria-labelledby="reserveFormLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
@@ -137,6 +137,96 @@
   </div>
 </div>
 	<!-- modal -->
+	
+	
+<div class="modal fade" id="updateReserveFormModal" tabindex="-1" role="dialog" aria-labelledby="updateReserveFormModal" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title" id="myModalLabel">예약 수정</h4>
+      </div>
+      <div class="modal-body">
+        <form id="modal-form" class="form-reserve form-horizontal" onsubmit="return false;">
+        	<input type="hidden" name="id">
+        	<div class="form-group">
+	        	<label class="col-sm-2 control-label">체크인</label>
+	        	<div class="col-sm-4">
+		        	<input type="date" name="chkin" class="form-control" placeholder="체크인">
+	        	</div>
+	        	<label class="col-sm-2 control-label">예약일</label>
+	        	<div class="col-sm-4">
+		        	<input type="date" name="reserveDate" class="form-control" readonly="readonly">
+	        	</div>
+        	</div>
+        	<div class="form-group">
+	        	<label class="col-sm-2 control-label">방번호</label>
+	        	<div class="col-sm-4">
+		        	<input type="text" name="roomNo" class="form-control" placeholder="방번호">
+	        	</div>
+        	</div>
+        	<div class="form-group">
+	        	<label class="col-sm-2 control-label">박 수</label>
+	        	<div class="col-sm-4">
+		        	<input type="number" name="nights" class="form-control" placeholder="박 수">
+	        	</div>
+	        	<div class="col-sm-4">
+		        	<button type="button" class="btn btn-default">체크인</button>
+	        	</div>
+        	</div>
+        	<hr />
+			<div class="form-group">
+	        	<label class="col-sm-2 control-label">예약자명</label>
+	        	<div class="col-sm-4">
+		        	<input type="text" name="rName" class="form-control" placeholder="예약자">
+	        	</div>
+	        	
+        	</div>
+        	
+        	<hr />
+        	<div class="form-group">
+	        	<label class="col-sm-2 control-label">1박 가격</label>
+	        	<div class="col-sm-4">
+		        	<input type="number" name="payPerDay"  class="form-control" placeholder="1박 가격">
+	        	</div>
+	        	<label class="col-sm-2 control-label">총액</label>
+	        	<div class="col-sm-4">
+		        	<input type="number" name="payment"  class="form-control" placeholder="총액">
+	        	</div>
+        	</div>
+        	<div class="form-group">
+	        	<label class="col-sm-2 control-label">입금</label>
+	        	<div class="col-sm-4">
+		        	<input type="number" name="deposit"  class="form-control" placeholder="입금">
+	        	</div>
+	        	<label class="col-sm-2 control-label">잔금</label>
+	        	<div class="col-sm-4">
+		        	<input type="number" name="balance"  class="form-control" placeholder="잔금">
+	        	</div>
+        	</div>
+        	<hr />
+        	<div class="form-group">
+	        	<label class="col-sm-2 control-label">경유</label>
+	        	<div class="col-sm-4">
+		        	<input type="text" name="via"  class="form-control" placeholder="경유">
+	        	</div>
+        	</div>
+        	<div class="form-group">
+        		<label class="col-sm-2 control-label">메모</label>
+	        	<div class="col-sm-10">
+	        		<textarea name="comment" class="form-control"></textarea>
+	        	</div>
+        	</div>
+       	</form>	
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">취소</button>
+        <button type="button" class="btn btn-primary form-update">예약 수정</button>
+      	<button type="button" class="btn btn-danger form-delete" data-dismiss="modal">예약 취소</button>
+      </div>
+    </div>
+  </div>
+</div>
 
 	<!-- Bootstrap core JavaScript
     ================================================== -->

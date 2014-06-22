@@ -21,7 +21,7 @@
 	var $tableHead = $("#table-head");
 	var $reserveFormModal = $("#reserveFormModal");
 	
-	var $form = {
+	var $reserveForm = {
 			form : $reserveFormModal.find("form"),
 			reserveDate : $reserveFormModal.find('[name=reserveDate]'),
 			roomNo : $reserveFormModal.find('[name=roomNo]'),
@@ -32,11 +32,32 @@
 			deposit : $reserveFormModal.find('[name=deposit]'),
 			balance : $reserveFormModal.find('[name=balance]'),
 			via : $reserveFormModal.find('[name=via]'),
-			rName : $reserveFormModal.find('[name=rname]'),
+			rName : $reserveFormModal.find('[name=rName]'),
 			gender : $reserveFormModal.find('[name=gender]'),
 			nationality : $reserveFormModal.find('[name=nationality]'),
 			phone : $reserveFormModal.find('[name=phone]'),
 			email : $reserveFormModal.find('[name=email]')
+	};
+	
+	var $updateReserveFormModal = $("#updateReserveFormModal");
+	
+	var $updateReserveForm = {
+			form : $updateReserveFormModal.find("form"),
+			id : $updateReserveFormModal.find('[name=id]'),
+			reserveDate : $updateReserveFormModal.find('[name=reserveDate]'),
+			roomNo : $updateReserveFormModal.find('[name=roomNo]'),
+			chkin : $updateReserveFormModal.find('[name=chkin]'),
+			nights : $updateReserveFormModal.find('[name=nights]'),
+			payPerDay : $updateReserveFormModal.find('[name=payPerDay]'),
+			payment : $updateReserveFormModal.find('[name=payment]'),
+			deposit : $updateReserveFormModal.find('[name=deposit]'),
+			balance : $updateReserveFormModal.find('[name=balance]'),
+			via : $updateReserveFormModal.find('[name=via]'),
+			rName : $updateReserveFormModal.find('[name=rName]'),
+			gender : $updateReserveFormModal.find('[name=gender]'),
+			nationality : $updateReserveFormModal.find('[name=nationality]'),
+			phone : $updateReserveFormModal.find('[name=phone]'),
+			email : $updateReserveFormModal.find('[name=email]')
 	};
 	
 	Handlebars.registerHelper("weekendHelper", function(date){
@@ -64,16 +85,6 @@
 	});
 	
 	Handlebars.registerHelper("roomTypeHelper", function(roomNo){
-		
-//		console.log(roomNo);
-//		console.log("room : " + $.inArray(roomNo, roomNoSet.room));
-//		console.log("room2nd : " + $.inArray(roomNo, roomNoSet.room2nd));
-//		console.log("room3nd : " + $.inArray(roomNo, roomNoSet.room3rd));
-//		console.log("room4nd : " + $.inArray(roomNo, roomNoSet.room4th));
-//		
-//		console.log("df : " + $.inArray(roomNo, roomNoSet.df));
-//		console.log("dm : " + $.inArray(roomNo, roomNoSet.dm));
-		
 		
 		if($.inArray(roomNo, roomNoSet.room) !== -1){
 			if($.inArray(roomNo, roomNoSet.room2nd ) !== -1){
@@ -171,7 +182,7 @@
 		
 		var cancel = function(){
 			flag = false;
-			$(".room.reserved").removeClass("reserved");
+			$(".room.mouseover").removeClass("mouseover");
 		};
 		
 		var isSameRoom = function($target){
@@ -258,11 +269,28 @@
 				var roomNo = state.roomNo;
 				var chkin = now.getformatDate(getChkinDate());
 				console.log(chkin);
-				$form.reserveDate.val(now.getformatDate(Date.now()));
-				$form.nights.val(nights);
-				$form.roomNo.val(roomNo);
-				$form.chkin.val(chkin);
+				$reserveForm.reserveDate.val(now.getformatDate(Date.now()));
+				$reserveForm.nights.val(nights);
+				$reserveForm.roomNo.val(roomNo);
+				$reserveForm.chkin.val(chkin);
 				$reserveFormModal.modal('show');
+			} else {
+				var id = $(e.target).attr("reserveId");
+				$.get("selectReserveById.roi?id=" + id,function(res){
+					
+					$updateReserveForm.id.val(res.id);
+					$updateReserveForm.reserveDate.val(now.getformatDate(res.reservDate));
+					$updateReserveForm.nights.val(res.nights);
+					$updateReserveForm.roomNo.val(res.roomNo);
+					$updateReserveForm.chkin.val(now.getformatDate(res.chkin));
+					$updateReserveForm.payPerDay.val(res.payPerDay);
+					$updateReserveForm.payment.val(res.payment);
+					$updateReserveForm.rName.val(res.rName);
+					$updateReserveForm.balance.val(res.balance);
+					$updateReserveForm.deposit.val(res.deposit);
+					
+					$updateReserveFormModal.modal('show');
+				});
 			}
 			
 			cancel();
@@ -272,8 +300,8 @@
 	(function(){
 		//금액 자동완성
 		var calPayment = function() {
-			var payPerDay = $form.payPerDay.val();
-			var nights = $form.nights.val();
+			var payPerDay = $reserveForm.payPerDay.val();
+			var nights = $reserveForm.nights.val();
 
 			if (payPerDay === "" || payPerDay.length == 0) {
 				return;
@@ -283,14 +311,14 @@
 			}
 			var result = payPerDay * nights;
 
-			$form.payment.val(result);
+			$reserveForm.payment.val(result);
 		};
-		$form.nights.change(calPayment);
-		$form.payPerDay.change(calPayment);
+		$reserveForm.nights.change(calPayment);
+		$reserveForm.payPerDay.change(calPayment);
 
-		$form.deposit.change(function() {
-			var payment = $form.payment.val();
-			var deposit = $form.deposit.val();
+		$reserveForm.deposit.change(function() {
+			var payment = $reserveForm.payment.val();
+			var deposit = $reserveForm.deposit.val();
 
 			if (payment === "" || payment.length == 0) {
 				return;
@@ -300,15 +328,15 @@
 			}
 
 			var result = payment - deposit;
-			$form.balance.val(result);
+			$reserveForm.balance.val(result);
 		});
 		
 		//입력할 필요가 없는 필드에 커서가 오면 다음 항목으로 포커스를 옮김
-		$form.payment.focus(function(e){
-			$form.deposit.focus();
+		$reserveForm.payment.focus(function(e){
+			$reserveForm.deposit.focus();
 		});
-		$form.balance.focus(function(e){
-			$form.via.focus();
+		$reserveForm.balance.focus(function(e){
+			$reserveForm.via.focus();
 		});
 	})();
 	
@@ -345,7 +373,7 @@
 		
 		$(".form-submit").click(function(e){
 			
-			var arr = $form.form.serializeArray();
+			var arr = $reserveForm.form.serializeArray();
 			
 			var data = {
 					reserverModel : makeReserver(arr),
@@ -369,6 +397,41 @@
 					location.reload(true);
 				}
 			});
+		});
+		$(".form-update").click(function(e){
+			if(confirm("예약을 수정하시겠습니까?")){
+				var id = $updateReserveForm.id.val();
+				var arr = $updateReserveForm.form.serializeArray();
+				var data = makeReserve(arr);
+				data.id = id;
+				console.log(data);
+				$.ajaxSetup({
+					contentType : "application/json"
+				});
+				$.post("updateReserve.roi",JSON.stringify(data), function(res){
+					if(res){
+						alert("수정되었습니다");
+						location.reload(true);
+					}
+				});
+			} else {
+				return false;
+			}
+		});
+		
+		$(".form-delete").click(function(e){
+			if(confirm("예약을 정말로 삭제하시겠습니까?")){
+				var id = $updateReserveForm.id.val();
+
+				$.get("deleteReserve.roi?id=" + id, function(res){
+					if(res){
+						alert("삭제되었습니다");
+						location.reload(true);
+					}
+				});
+			} else {
+				return false;
+			}
 		});
 	
 })();

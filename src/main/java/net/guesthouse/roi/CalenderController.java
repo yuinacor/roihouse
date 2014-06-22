@@ -12,6 +12,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -28,7 +29,7 @@ public class CalenderController {
 
 	private static Logger LOGGER = LoggerFactory
 			.getLogger(CalenderController.class);
-	
+
 	@RequestMapping(value = "/calender.roi", method = RequestMethod.GET)
 	public String Calender() {
 		return "calender";
@@ -39,5 +40,36 @@ public class CalenderController {
 	List<CalenderModel> selectCalender(@RequestBody DashboardTimeModel timeModel) {
 		List<ReserveModel> reserveModels = reserveDao.selectCalender(timeModel);
 		return roomService.makeCalender(timeModel, reserveModels);
+	}
+
+	@RequestMapping(value = "/selectReserveById.roi", method = RequestMethod.GET)
+	public @ResponseBody
+	ReserveModel selectReserveById(int id) {
+
+		ReserveModel reserveModel = new ReserveModel();
+		reserveModel.setId(id);
+		return reserveDao.selectReserveById(reserveModel);
+	}
+
+	@RequestMapping(value = "/deleteReserve.roi", method = {
+			RequestMethod.DELETE, RequestMethod.GET })
+	public @ResponseBody
+	boolean deleteReserve(int id) {
+		ReserveModel model = new ReserveModel();
+		model.setId(id);
+		int result = reserveDao.deleteReserve(model);
+		if (result != 1)
+			return false;
+		return true;
+	}
+
+	@RequestMapping(value = "/updateReserve.roi", method = RequestMethod.POST)
+	@Transactional
+	public @ResponseBody
+	boolean updateReserve(@RequestBody ReserveModel reserve) {
+		int result = reserveDao.updateReserve(reserve);
+		if (result != 1)
+			return false;
+		return true;
 	}
 }

@@ -19,7 +19,7 @@
 			type: "POST"
 		}).success(function(data){
 			console.log(data);
-			$('#table-body').append(TPL({
+			$('#table-body').empty().append(TPL({
 				data : data
 			}));
 		});

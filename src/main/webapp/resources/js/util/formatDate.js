@@ -9,6 +9,12 @@ var FormatDate = function(date) {
 		this.setDate = function(date) {
 			_year = Number(date.split("-")[0]);
 			_month = Number(date.split("-")[1]);
+			
+			return this;
+		};
+		
+		this.getOriginDate = function(){
+			return date;
 		};
 		
 		var monthFormat = function(month){
@@ -69,6 +75,11 @@ var FormatDate = function(date) {
 		
 		this.getNextMonth = function(){
 			return getNext();
+		};
+		
+		this.getNextFormatDate = function(formatDate){
+
+			return (new FormatDate(new Date())).setDate(formatDate.getNextMonth());
 		};
 		
 		this.getformatDate = function(time){

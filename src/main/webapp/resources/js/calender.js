@@ -1,5 +1,4 @@
-/**
- * ['formatDate']
+ /* ['formatDate']
  */
 (function(){
 	
@@ -110,6 +109,8 @@
 	
 	var now = new FormatDate(new Date());
 	
+	var moreLoadList = [];
+	
 	var isExist = function(rooms, roomNo){
 		rooms.forEach(function(room){
 			if(room.roomNo === roomNo){
@@ -123,13 +124,13 @@
 		$tableHead.append(tplHead({rooms : roomNos}));
 	};
 	
-	var createCalender = function(){
+	var createCalender = function(now){
 		var data = {
 				start : now.getDate(),
 				end : now.getNextDate()
 		};
 		
-		$("#table-body").empty();
+
 		$.ajax({
 			url : "selectCalender.roi",
 			contentType: "application/json",
@@ -137,7 +138,7 @@
 			dataType:"json",
 			type:"POST"
 		}).success(function(data){
-			$monthHeader.html(now.getMonth);
+
 //		console.log(data);
 			data.forEach(function(calender, index){
 //				console.log(calender);
@@ -159,18 +160,39 @@
 		});
 	};
 	
+	var calenderInitialize = function(){
+		$monthHeader.html(now.getMonth);
+		$("#table-body").empty();
+		createCalender(now);
+		moreLoadList = [];
+	};
+	
+	//FIXME
+	// need refactor
 	$monthPrev.click(function(e) {
 		now.setDate(now.getPrevMonth());
-		createCalender(now);
+		calenderInitialize();
 	});
 
 	$monthNext.click(function(e) {
 		now.setDate(now.getNextMonth());
-		createCalender(now);
+		calenderInitialize();
 	});
 	$(document).ready(function(){
 		createCalenderHeader();
-		createCalender(now);
+		calenderInitialize();
+	});
+	
+	$(document).scroll(function(e){
+		console.log(now.getDate());
+		if(document.body.scrollTop >= document.body.scrollHeight - window.screen.availHeight){
+			if(moreLoadList.length == 0){
+				moreLoadList.push(now.getNextFormatDate(now));
+			} else {
+				moreLoadList.push(now.getNextFormatDate(moreLoadList[moreLoadList.length - 1]));
+			}
+			createCalender(moreLoadList[moreLoadList.length - 1]);
+		}
 	});
 	
 	(function(){

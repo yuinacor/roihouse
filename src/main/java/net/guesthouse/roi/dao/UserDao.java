@@ -1,6 +1,6 @@
 package net.guesthouse.roi.dao;
 
-import net.guesthouse.roi.dto.model.UserModel;
+import net.guesthouse.roi.admin.user.UserModel;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;

@@ -1,6 +1,6 @@
-package net.guesthouse.roi.dto.model;
+package net.guesthouse.roi.reserve.user;
 
-public class ReserverModel {
+public class ReservedUser {
 	private int id;
 	private String rName;
 	private String gender;

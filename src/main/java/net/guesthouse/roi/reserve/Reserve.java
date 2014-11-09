@@ -1,21 +1,25 @@
-package net.guesthouse.roi.dto.model;
+package net.guesthouse.roi.reserve;
 
 import java.sql.Timestamp;
 
-public class ReserveModel {
+public class Reserve {
 	private int id;
 	private String rType;
 	private Timestamp reservDate;
 	private String roomNo;
 	private Timestamp chkin;
 	private int nights;
-	private int reserver;
-	private String rName;
 	private int payPerDay;
 	private int payment;
 	private int deposit;
 	private int balance;
 	private String via;
+
+	private String rName;
+	private String gender;
+	private String region;
+	private String phone;
+	private String email;
 
 	public int getId() {
 		return id;
@@ -65,20 +69,44 @@ public class ReserveModel {
 		this.nights = nights;
 	}
 
-	public int getReserver() {
-		return reserver;
-	}
-
-	public void setReserver(int reserver) {
-		this.reserver = reserver;
-	}
-
 	public String getrName() {
 		return rName;
 	}
 
 	public void setrName(String rName) {
 		this.rName = rName;
+	}
+
+	public String getGender() {
+		return gender;
+	}
+
+	public void setGender(String gender) {
+		this.gender = gender;
+	}
+
+	public String getRegion() {
+		return region;
+	}
+
+	public void setRegion(String region) {
+		this.region = region;
+	}
+
+	public String getPhone() {
+		return phone;
+	}
+
+	public void setPhone(String phone) {
+		this.phone = phone;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
 	}
 
 	public int getPayPerDay() {

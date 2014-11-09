@@ -3,44 +3,43 @@ package net.guesthouse.roi.dao;
 import java.util.List;
 
 import net.guesthouse.roi.dto.model.DashboardTimeModel;
-import net.guesthouse.roi.dto.model.ReserveModel;
+import net.guesthouse.roi.reserve.Reserve;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 @Repository
 public class ReserveDao {
-	private static final String namespace = "net.guesthouse.roi.ReserveModel.";
+	private static final String namespace = "net.guesthouse.roi.reserve.";
 
 	@Autowired
 	private CommonDAO commonDao;
 
-	public int insertReserve(ReserveModel reserveModel) {
-		return commonDao.insert(namespace + "insertReserve", reserveModel);
+	public int insertReserve(Reserve reserve) {
+		return commonDao.insert(namespace + "insertReserve", reserve);
 	}
 
-	public int updateReserve(ReserveModel reserveModel) {
-		return commonDao.update(namespace + "updateReserve", reserveModel);
+	public int updateReserve(Reserve reserve) {
+		return commonDao.update(namespace + "updateReserve", reserve);
 	}
 
-	public int deleteReserve(ReserveModel reserveModel) {
-		return commonDao.delete(namespace + "deleteReserve", reserveModel);
+	public int deleteReserve(Reserve reserve) {
+		return commonDao.delete(namespace + "deleteReserve", reserve);
 	}
 
-	public List<ReserveModel> selectReserve(ReserveModel reserveModel) {
-		return commonDao.selectList(namespace + "selectReserve", reserveModel);
+	public List<Reserve> selectReserve(Reserve reserve) {
+		return commonDao.selectList(namespace + "selectReserve", reserve);
 	}
 
-	public ReserveModel selectReserveById(ReserveModel reserveModel) {
-		return commonDao.selectOne(namespace + "selectReserveById",
-				reserveModel);
+	public Reserve selectReserveById(Reserve reserve) {
+		return commonDao.selectOne(namespace + "selectReserveById", reserve);
 	}
 
-	public List<ReserveModel> selectReserveList(DashboardTimeModel timeModel) {
+	public List<Reserve> selectReserveList(DashboardTimeModel timeModel) {
 		return commonDao.selectList(namespace + "selectReserveList", timeModel);
 	}
 
-	public List<ReserveModel> selectCalender(DashboardTimeModel timeModel) {
+	public List<Reserve> selectCalender(DashboardTimeModel timeModel) {
 		return commonDao.selectList(namespace + "selectCalender", timeModel);
 	}
 

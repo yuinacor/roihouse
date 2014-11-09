@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.mybatis.spring.support.SqlSessionDaoSupport;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.StringUtils;
 
 public class CommonDAO extends SqlSessionDaoSupport {
@@ -21,31 +22,37 @@ public class CommonDAO extends SqlSessionDaoSupport {
 		return defaultNamespace;
 	}
 
+	@Transactional
 	public int insert(String statementName, Object obj) {
 		return getSqlSession().insert(defaultNamespace.concat(statementName),
 				obj);
 	}
 
+	@Transactional
 	public int insert(String namespace, String statementName, Object obj) {
 		return getSqlSession().insert(
 				namespace.concat(".").concat(statementName), obj);
 	}
 
+	@Transactional
 	public int update(String statementName, Object obj) {
 		return getSqlSession().update(defaultNamespace.concat(statementName),
 				obj);
 	}
 
+	@Transactional
 	public int update(String namespace, String statementName, Object obj) {
 		return getSqlSession().update(
 				namespace.concat(".").concat(statementName), obj);
 	}
 
+	@Transactional
 	public int delete(String statementName, Object obj) {
 		return getSqlSession().delete(defaultNamespace.concat(statementName),
 				obj);
 	}
 
+	@Transactional
 	public int delete(String namespace, String statementName, Object obj) {
 		return getSqlSession().delete(
 				namespace.concat(".").concat(statementName), obj);

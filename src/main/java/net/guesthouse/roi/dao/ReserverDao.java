@@ -1,6 +1,6 @@
 package net.guesthouse.roi.dao;
 
-import net.guesthouse.roi.dto.model.ReserverModel;
+import net.guesthouse.roi.reserve.user.ReservedUser;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -12,15 +12,15 @@ public class ReserverDao {
 	@Autowired
 	private CommonDAO commonDao;
 
-	public int insertReserver(ReserverModel reserverModel) {
+	public int insertReserver(ReservedUser reserverModel) {
 		return commonDao.insert(namespace + "insertReserver", reserverModel);
 	}
 
-	public void updateReserver(ReserverModel reserverModel) {
+	public void updateReserver(ReservedUser reserverModel) {
 		commonDao.update(namespace + "updateReserver", reserverModel);
 	}
 
-	public ReserverModel selectReserver(ReserverModel reserverModel) {
+	public ReservedUser selectReserver(ReservedUser reserverModel) {
 		return commonDao.selectOne(namespace + "selectReserver", reserverModel);
 	}
 }

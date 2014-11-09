@@ -1,4 +1,4 @@
-package net.guesthouse.roi.dto.model;
+package net.guesthouse.roi.admin.user;
 
 /**
  * @author yuinacor

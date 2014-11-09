@@ -2,8 +2,8 @@ package net.guesthouse.roi;
 
 import javax.servlet.http.HttpSession;
 
+import net.guesthouse.roi.admin.user.UserModel;
 import net.guesthouse.roi.dao.UserDao;
-import net.guesthouse.roi.dto.model.UserModel;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
